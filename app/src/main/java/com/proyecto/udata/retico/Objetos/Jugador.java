@@ -1,4 +1,6 @@
-package com.proyecto.udata.retico.modelos;
+package com.proyecto.udata.retico.Objetos;
+
+import com.proyecto.udata.retico.Modelos.JugadorModel;
 
 import java.util.Date;
 
@@ -6,7 +8,7 @@ import java.util.Date;
  * Created by James on 22/5/2017.
  */
 
-public class JugadorModelo {
+public class Jugador {
     public String Nombre;
     public String Apellido1;
     public String Apellido2;
@@ -15,9 +17,9 @@ public class JugadorModelo {
     public String Contrasena;
     public String Telefono;
 
-    public JugadorModelo(){}
+    public Jugador(){}
 
-    public JugadorModelo(String nombre, String apellido1, String apellido2, Date fechaNacimiento,String correo, String contrasena, String telefono){
+    public Jugador(String nombre, String apellido1, String apellido2, Date fechaNacimiento, String correo, String contrasena, String telefono){
         this.Nombre = nombre;
         this.Apellido1 = apellido1;
         this.Apellido2 = apellido2;
@@ -81,5 +83,9 @@ public class JugadorModelo {
 
     public void setTelefono(String telefono) {
         Telefono = telefono;//
+    }
+
+    public Jugador obtenerJugador(String correo, String contrasena){
+        return new JugadorModel().obtenerJugador(correo,contrasena);
     }
 }

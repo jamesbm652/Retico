@@ -1,6 +1,6 @@
-package com.proyecto.udata.retico.servidores;
+package com.proyecto.udata.retico.Modelos;
 
-import com.proyecto.udata.retico.modelos.UsuarioModelo;
+import com.proyecto.udata.retico.Objetos.Jugador;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -14,7 +14,7 @@ import java.net.URL;
  * Created by James on 22/5/2017.
  */
 
-public class UsuarioServidor {
+public class JugadorModel {
     private HttpURLConnection conexion;
 
     public boolean conexionConServidor(String url){
@@ -51,13 +51,14 @@ public class UsuarioServidor {
         return resultado.toString();
     }
 
-    public UsuarioModelo obtenerUsuario(String correo, String contrasena){
+    public Jugador obtenerJugador(String correo, String contrasena){
         boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/login.php?correo="
                 +correo+"&pass="+contrasena);
         if (cnxExitosa){
             String jsonString = obtenerJsonEnString();
             //Falta codigo para procesar
-            return new UsuarioModelo();
+
+            return new Jugador();
         }else{
             return null;
         }

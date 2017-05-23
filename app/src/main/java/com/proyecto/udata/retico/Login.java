@@ -1,6 +1,5 @@
 package com.proyecto.udata.retico;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,14 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.proyecto.udata.retico.Objetos.Jugador;
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
 
@@ -43,7 +35,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-
+        /*
         switch (v.getId()){
             case R.id.btnRegistrar:
                 Intent intent = new Intent();
@@ -53,7 +45,33 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
                 break;
         }
+        */
 
+        if(txtCorreo.getText().toString() !="" && txtContrasena.getText().toString() != ""){
+
+            Thread tr = new Thread(){
+                @Override
+                public void run() {
+                    final Jugador jugador = new Jugador().obtenerJugador(txtCorreo.getText().toString(),txtContrasena.getText().toString());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (jugador != null){
+                                //Intent i= new Intent(getApplicationContext(), registroNotas.class);
+                                //i.putExtra("cod", txtCorreo.getText().toString());
+                                //startActivity(i);
+                            }else{
+                                Toast.makeText(getApplicationContext(), "Usuario invalido", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                }
+            };
+            tr.start();
+        }
+
+        /*
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -73,9 +91,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 });
             }
         };
-        tr.start();
+        tr.start();*/
     }
-
+/*
     //Metodo para enviar datos y recibir el JSON
     public String enviarDatosGET(String correo, String pass){
         URL url =  null;
@@ -119,4 +137,5 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         }
         return res;
     }
+    */
 }
