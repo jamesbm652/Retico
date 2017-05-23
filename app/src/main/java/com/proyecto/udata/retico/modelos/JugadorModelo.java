@@ -80,6 +80,6 @@ public class JugadorModelo {
     }
 
     public void setTelefono(String telefono) {
-        Telefono = telefono;
+        Telefono = telefono;//
     }
 }
