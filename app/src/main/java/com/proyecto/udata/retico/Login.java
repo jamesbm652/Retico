@@ -27,16 +27,33 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btnRegistrar = (Button)findViewById(R.id.btnRegistrar);
-        btnIngresar = (Button)findViewById(R.id.btnRegistrar);
-        txtCorreo = (TextView)findViewById(R.id.txtCorreo);
-        txtContrasena = (TextView)findViewById(R.id.txtContrasena);
+        inicializarComponentes();
 
         btnIngresar.setOnClickListener(this);
     }
 
+    protected void inicializarComponentes(){
+        btnRegistrar = (Button)findViewById(R.id.btnRegistrar);
+        btnIngresar = (Button)findViewById(R.id.btnRegistrar);
+        txtCorreo = (TextView)findViewById(R.id.txtCorreo);
+        txtContrasena = (TextView)findViewById(R.id.txtContrasena);
+    }
+
+
+
     @Override
     public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id.btnRegistrar:
+                Intent intent = new Intent();
+                break;
+
+            case R.id.btnIngresar:
+
+                break;
+        }
+
         Thread tr = new Thread(){
             @Override
             public void run() {
