@@ -31,45 +31,45 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         txtContrasena = (TextView)findViewById(R.id.txtContrasena);
     }
 
-
-
     @Override
     public void onClick(View v) {
-        /*
+
         switch (v.getId()){
             case R.id.btnRegistrar:
-                Intent intent = new Intent();
+                Toast.makeText(getApplicationContext(),"",Toast.LENGTH_SHORT).show();
+
                 break;
 
             case R.id.btnIngresar:
+                Thread tr = new Thread(){
+                    @Override
+                    public void run() {
+                        final Jugador jugador = new Jugador().obtenerJugador(txtCorreo.getText().toString(),txtContrasena.getText().toString());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
 
+                                if (jugador != null){
+                                    //Intent i= new Intent(getApplicationContext(), registroNotas.class);
+                                    //i.putExtra("cod", txtCorreo.getText().toString());
+                                    //startActivity(i);
+                                    Toast.makeText(getApplicationContext(), "Usuario valido", Toast.LENGTH_LONG).show();
+                                }else{
+                                    Toast.makeText(getApplicationContext(), "Usuario invalido", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                    }
+                };
+                tr.start();
                 break;
         }
-        */
 
-        if(txtCorreo.getText().toString() !="" && txtContrasena.getText().toString() != ""){
 
-            Thread tr = new Thread(){
-                @Override
-                public void run() {
-                    final Jugador jugador = new Jugador().obtenerJugador(txtCorreo.getText().toString(),txtContrasena.getText().toString());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
+        //if(txtCorreo.getText().toString() !="" && txtContrasena.getText().toString() != ""){
 
-                            if (jugador != null){
-                                //Intent i= new Intent(getApplicationContext(), registroNotas.class);
-                                //i.putExtra("cod", txtCorreo.getText().toString());
-                                //startActivity(i);
-                            }else{
-                                Toast.makeText(getApplicationContext(), "Usuario invalido", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-                }
-            };
-            tr.start();
-        }
+
+        //}
 
         /*
         Thread tr = new Thread(){
