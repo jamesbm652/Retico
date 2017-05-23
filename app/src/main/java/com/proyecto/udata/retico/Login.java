@@ -26,7 +26,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
     protected void inicializarComponentes(){
         btnRegistrar = (Button)findViewById(R.id.btnRegistrar);
-        btnIngresar = (Button)findViewById(R.id.btnRegistrar);
+        btnIngresar = (Button)findViewById(R.id.btnIngresar);
         txtCorreo = (TextView)findViewById(R.id.txtCorreo);
         txtContrasena = (TextView)findViewById(R.id.txtContrasena);
     }
