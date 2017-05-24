@@ -49,8 +49,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // set day of month , month and year value in the edit text
-                                txtFechaNacimiento.setText(dayOfMonth + "/"
-                                        + (monthOfYear + 1) + "/" + year);
+                                txtFechaNacimiento.setText(year + "-"
+                                        + (monthOfYear + 1) + "-" + dayOfMonth);
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
@@ -75,7 +75,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
 
         Date fecha = null;
         try {
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             fecha = format.parse(txtFechaNacimiento.getText().toString());
         } catch (ParseException e) {
             e.printStackTrace();
