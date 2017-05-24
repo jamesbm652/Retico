@@ -74,7 +74,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                         public void run() {
 
                             if (ingreso){
-                                Toast.makeText(getApplicationContext(), "Registro exitoso", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Jugador registrado", Toast.LENGTH_LONG).show();
                                 Intent i= new Intent(getApplicationContext(), Login.class);
                                 //i.putExtra("cod", txtCorreo.getText().toString());
                                 startActivity(i);
