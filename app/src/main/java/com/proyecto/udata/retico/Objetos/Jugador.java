@@ -113,4 +113,8 @@ public class Jugador {
     public Boolean insertarJugador(){
         return new RegistroModel().insertarJugador(this);
     }
+
+    public Boolean modificarJugador(Jugador jugadorModificado){
+        return new JugadorModel().modificarJugador(jugadorModificado);
+    }
 }

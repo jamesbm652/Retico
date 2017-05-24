@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Registro" />
-        <activity android:name=".ManejoJugadores"></activity>
+        <activity android:name=".ManejoJugadores" />
+        <activity android:name=".MenuPrincipal"></activity>
     </application>
 
 </manifest>
