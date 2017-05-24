@@ -47,7 +47,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 break;
 
             case R.id.btnIngresar:
-
                 if(!txtCorreo.getText().toString().equals("") && !txtContrasena.getText().toString().equals("")){
                     if(validarCorreo(txtCorreo.getText().toString())) {
                         Thread tr = new Thread() {
