@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="15dp"
+    tools:context="com.proyecto.udata.retico.Registro">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Complete los siguientes datos:"
+        android:textSize="25dp"
+        android:textColor="#404040"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp">
+
+        <TextView
+            android:id="@+id/labNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre:"
+            android:textSize="15dp"
+            android:textColor="#404040"
+            />
+
+        <EditText
+            android:id="@+id/txtNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="text"
+            android:hint=""
+            android:backgroundTint="#799C5C"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp">
+
+        <TextView
+            android:id="@+id/labApellido1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Primer apellido:"
+            android:textSize="15dp"
+            android:textColor="#404040"
+            />
+
+        <EditText
+            android:id="@+id/txtApellido1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="text"
+            android:hint=""
+            android:backgroundTint="#799C5C"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp">
+
+        <TextView
+            android:id="@+id/labApellido2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Segundo apellido:"
+            android:textSize="15dp"
+            android:textColor="#404040"
+            />
+
+        <EditText
+            android:id="@+id/txtApellido2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="text"
+            android:hint=""
+            android:backgroundTint="#799C5C"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp">
+
+        <TextView
+            android:id="@+id/labFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha de nacimiento:"
+            android:textSize="15dp"
+            android:textColor="#404040"
+            />
+
+        <EditText
+            android:id="@+id/txtFechaNacimiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:hint="Seleccione una fecha"
+            android:backgroundTint="#799C5C"
+            android:onClick="datePicker"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp">
+
+        <TextView
+            android:id="@+id/labTelefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teléfono:"
+            android:textSize="15dp"
+            android:textColor="#404040"
+            />
+
+        <EditText
+            android:id="@+id/txtTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="phone"
+            android:hint=""
+            android:backgroundTint="#799C5C"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/labCorreo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Correo:"
+            android:textSize="15dp"
+            android:textColor="#404040"
+            />
+
+        <EditText
+            android:id="@+id/txtCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="textEmailAddress"
+            android:hint="example@gmail.com"
+            android:backgroundTint="#799C5C"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp">
+
+        <TextView
+            android:id="@+id/labContrasena"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contraseña:"
+            android:textSize="15dp"
+            android:textColor="#404040"
+            />
+
+        <EditText
+            android:id="@+id/txtContrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="textPassword"
+            android:hint="Escribe tu contraseña"
+            android:backgroundTint="#799C5C"
+            />
+    </LinearLayout>
+
+
+
+    <Button
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Registrarme"
+        />
+
+
+</LinearLayout>

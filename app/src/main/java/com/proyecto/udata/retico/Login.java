@@ -1,5 +1,6 @@
 package com.proyecto.udata.retico;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +12,7 @@ import com.proyecto.udata.retico.Objetos.Jugador;
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
 
-    Button btnRegistrar, btnIngresar;
+    Button btnRegistrar,btnIngresar;
     TextView txtCorreo, txtContrasena;
 
     @Override
@@ -21,11 +22,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
         inicializarComponentes();
 
+        btnRegistrar.setOnClickListener(this);
         btnIngresar.setOnClickListener(this);
     }
 
     protected void inicializarComponentes(){
-        btnRegistrar = (Button)findViewById(R.id.btnRegistrar);
+        btnRegistrar = (Button)findViewById(R.id.btnRegistro);
         btnIngresar = (Button)findViewById(R.id.btnIngresar);
         txtCorreo = (TextView)findViewById(R.id.txtCorreo);
         txtContrasena = (TextView)findViewById(R.id.txtContrasena);
@@ -35,9 +37,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.btnRegistrar:
-                Toast.makeText(getApplicationContext(),"",Toast.LENGTH_SHORT).show();
 
+            case R.id.btnRegistro:
+                Intent intent = new Intent(getApplicationContext(),Registro.class);
+                startActivity(intent);
                 break;
 
             case R.id.btnIngresar:

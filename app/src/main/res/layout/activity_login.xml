@@ -9,23 +9,40 @@
 
 
     <Button
-        android:id="@+id/btnRegistrar"
+        android:id="@+id/btnRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:text="Registrarme"
         />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="230dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
 
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:src="@drawable/logo"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="140dp"
+            android:layout_gravity="right"
+            android:layout_marginBottom="20dp"
+
+            android:paddingLeft="35dp"
+
+            android:src="@drawable/balon"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="cursive"
+            android:textColor="@android:color/holo_green_dark"
+            android:paddingTop="45dp"
+            android:text="ReTico"
+            android:textSize="70dp" />
+
+    </LinearLayout>
 
 
     <EditText
