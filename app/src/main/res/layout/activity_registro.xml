@@ -112,10 +112,9 @@
 
         <EditText
             android:id="@+id/txtFechaNacimiento"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:hint="Seleccione una fecha"
             android:backgroundTint="#799C5C"
             />
 
@@ -194,20 +193,17 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:inputType="textPassword"
-            android:hint="Escribe tu contraseña"
             android:backgroundTint="#799C5C"
             />
     </LinearLayout>
 
-
-
     <Button
-        android:id="@+id/btnRegistro"
+        android:id="@+id/btnModificar"
         android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Registrarme"
+        android:text="Modificar"
         />
 
 

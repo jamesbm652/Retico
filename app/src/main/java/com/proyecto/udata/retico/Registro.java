@@ -92,8 +92,6 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
 
         if(nombre != "" && apellido1 != "" &&  apellido2 != "" &&  correo != "" &&  pass != "" &&  tel != ""){
 
-            //validar q el correo no es de otra persona ya existente
-
             Thread tr = new Thread(){
                 @Override
                 public void run() {
