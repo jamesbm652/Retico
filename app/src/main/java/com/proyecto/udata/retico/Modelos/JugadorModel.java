@@ -67,12 +67,12 @@ public class JugadorModel {
                 JSONArray jsonArray = new JSONArray(jsonString);
                     JSONObject j = (JSONObject) jsonArray.get(0);
 
-                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
                     Date fecha = formato.parse(j.getString("FechaNacimiento"));
 
                      jugador = new Jugador(Integer.parseInt(j.getString("Id")), j.getString("Nombre"), j.getString("Apellido1"),
                             j.getString("Apellido2"), fecha, j.getString("Correo"),
-                            j.getString("Contrasena"),j.getString("Telefono") );
+                            j.getString("Contraseña"),j.getString("Telefono") );
 
                     return jugador;
             } catch (Exception e) {
