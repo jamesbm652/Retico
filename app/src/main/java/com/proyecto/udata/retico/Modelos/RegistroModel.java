@@ -2,6 +2,9 @@ package com.proyecto.udata.retico.Modelos;
 
 import com.proyecto.udata.retico.Objetos.Jugador;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -52,15 +55,26 @@ public class RegistroModel {
     }
 
     public Boolean insertarJugador(Jugador jugador){
-        Boolean ingreso = true;
+        Boolean ingreso = false;
+        String res = "false";
+
         boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/registro.php?nombre="+ jugador.getNombre() +
-                "&apellido1=" + jugador.getApellido1() + "&apellido2=" + jugador.getApellido2() + "&fechaNacimiento='1995-03-25' &correo=" +
+                "&apellido1=" + jugador.getApellido1() + "&apellido2=" + jugador.getApellido2() + "&fechaNacimiento=" +jugador.getFechaNacimiento()+ "&correo=" +
                 jugador.getCorreo() + "&pass=" + jugador.getContrasena() + "&telefono=" + jugador.getTelefono());
 
-        if(cnxExitosa && (obtenerJsonEnString() != "true")){
-            ingreso = false;
-        }
+        if (cnxExitosa) {
+            String jsonString = obtenerJsonEnString();
+            try {
+                JSONObject jsonObject = new JSONObject(jsonString);
+                res = jsonObject.getString("respuesta");
 
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cnxExitosa && res.equals("true")) {
+            ingreso = true;
+        }
         return ingreso;
     }
 }
