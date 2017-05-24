@@ -117,7 +117,6 @@
             android:layout_marginLeft="10dp"
             android:hint="Seleccione una fecha"
             android:backgroundTint="#799C5C"
-            android:onClick="datePicker"
             />
 
 
