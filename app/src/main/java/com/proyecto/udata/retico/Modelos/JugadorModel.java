@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -92,12 +93,16 @@ public class JugadorModel {
 
 
 
-    public Boolean modificarJugador(String nombre,String apellido1, String apellido2, Date fechaNac,String contrasena,String telefono){
+    public Boolean modificarJugador(int id, String nombre,String apellido1, String apellido2, Date fechaNac, String correo, String contrasena,String telefono){
         Boolean ingreso = false;
         String res = "false";
 
-        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/modificar.php?nombre="+ nombre +
-                "&apellido1=" + apellido1 + "&apellido2=" + apellido2 + "&fechaNacimiento=" + fechaNac + "&pass=" + contrasena + "&telefono=" + telefono);
+        DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaCon = formato.format(fechaNac);
+
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/modificarJugador.php?id="+id+"&nombre="+nombre+
+                "&apellido1="+apellido1+"&apellido2="+apellido2+"&fechaNacimiento="+fechaCon+
+                "&correo="+correo+"&pass="+contrasena+"&telefono="+telefono);
 
         if (cnxExitosa) {
             String jsonString = obtenerJsonEnString();

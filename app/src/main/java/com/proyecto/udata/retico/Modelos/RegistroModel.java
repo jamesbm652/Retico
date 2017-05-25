@@ -61,7 +61,7 @@ public class RegistroModel {
         Boolean ingreso = false;
         String res = "false";
 
-        DateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         String fechaCon = formato.format(jugador.getFechaNacimiento());
 
         boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/registro.php?nombre="+ jugador.getNombre() +

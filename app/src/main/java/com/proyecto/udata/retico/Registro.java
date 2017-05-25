@@ -74,7 +74,6 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-
         Date fecha = null;
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

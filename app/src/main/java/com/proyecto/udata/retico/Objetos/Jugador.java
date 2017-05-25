@@ -117,7 +117,7 @@ public class Jugador{
         return new RegistroModel().insertarJugador(this);
     }
 
-    public Boolean modificarJugador(String nombre,String apellido1, String apellido2, Date fechaNac,String contrasena,String telefono){
-        return new JugadorModel().modificarJugador(nombre,apellido1,apellido2,fechaNac,contrasena,telefono);
+    public Boolean modificarJugador(int id,String nombre,String apellido1,String apellido2,Date fechaNac,String correo,String contrasena,String telefono){
+        return new JugadorModel().modificarJugador(id,nombre,apellido1,apellido2,fechaNac,correo,contrasena,telefono);
     }
 }

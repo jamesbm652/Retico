@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.proyecto.udata.retico.Objetos.Jugador;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,6 +31,7 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_manejo_jugadores);
 
         inicializarComponentes();
+        btnModificar.setOnClickListener(this);
         setValores();
     }
 
@@ -45,11 +47,15 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
     }
 
     public void setValores(){
-        Jugador jugadorActual = new Jugador();
+        jugadorActual = new Jugador();
         txtNombre.setText(jugadorActual.getNombre());
         txtApellido1.setText(jugadorActual.getApellido1());
         txtApellido2.setText(jugadorActual.getApellido2());
-        txtFechaNacimiento.setText(jugadorActual.getFechaNacimiento().toString());
+
+        DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaCon = formato.format(jugadorActual.getFechaNacimiento());
+
+        txtFechaNacimiento.setText(fechaCon);
         txtCorreo.setText(jugadorActual.getCorreo());
         txtContrasena.setText(jugadorActual.getContrasena());
         txtTelefono.setText(jugadorActual.getTelefono());
@@ -59,7 +65,7 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         Date fecha = null;
         try {
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             fecha = format.parse(txtFechaNacimiento.getText().toString());
         } catch (ParseException e) {
             e.printStackTrace();
@@ -74,12 +80,12 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
         final String pass = txtContrasena.getText().toString().trim();
         final String tel = txtTelefono.getText().toString().trim();
 
-        if(!nombre.equals("") && !apellido1.equals("") &&  !apellido2.equals("") && !correo.equals("") && !pass.equals("") && !tel.equals("")){
+        if(!nombre.equals("") && !apellido1.equals("") &&  !apellido2.equals("") && !pass.equals("") && !tel.equals("")){
             Thread tr = new Thread(){
                 @Override
                 public void run() {
 
-                    final Boolean ingreso = jugadorActual.modificarJugador(nombre,apellido1,apellido2,fechaNac,pass,tel);
+                    final Boolean ingreso = jugadorActual.modificarJugador(jugadorActual.getId(),nombre,apellido1,apellido2,fechaNac,correo,pass,tel);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -93,9 +99,7 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
                                 jugadorActual.setContrasena(pass);
                                 jugadorActual.setTelefono(tel);
 
-                                Toast.makeText(getApplicationContext(), "Los dato se han modificado", Toast.LENGTH_LONG).show();
-                                Intent i= new Intent(getApplicationContext(), Login.class);
-                                startActivity(i);
+                                Toast.makeText(getApplicationContext(), "Los datos se han modificado", Toast.LENGTH_LONG).show();
                             }else{
                                 Toast.makeText(getApplicationContext(), "Error al modificar", Toast.LENGTH_LONG).show();
                             }

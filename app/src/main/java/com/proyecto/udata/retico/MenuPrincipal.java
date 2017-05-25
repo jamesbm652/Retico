@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MenuPrincipal extends AppCompatActivity {
+public class MenuPrincipal extends AppCompatActivity implements View.OnClickListener{
 
     Button btnModificar;
     @Override
@@ -16,13 +16,12 @@ public class MenuPrincipal extends AppCompatActivity {
 
         btnModificar = (Button)findViewById(R.id.btnModificar);
 
+        btnModificar.setOnClickListener(this);
+    }
 
-        btnModificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),ManejoJugadores.class);
-                startActivity(intent);
-            }
-        });
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getApplicationContext(),ManejoJugadores.class);
+        startActivity(intent);
     }
 }
