@@ -70,9 +70,15 @@ public class JugadorModel {
                     SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
                     Date fecha = formato.parse(j.getString("FechaNacimiento"));
 
-                     jugador = new Jugador(Integer.parseInt(j.getString("Id")), j.getString("Nombre"), j.getString("Apellido1"),
-                            j.getString("Apellido2"), fecha, j.getString("Correo"),
-                            j.getString("Contraseña"),j.getString("Telefono") );
+                    jugador = new Jugador();
+                    jugador.setId(Integer.parseInt(j.getString("Id")));
+                    jugador.setNombre(j.getString("Nombre"));
+                    jugador.setApellido1(j.getString("Apellido1"));
+                    jugador.setApellido2(j.getString("Apellido2"));
+                    jugador.setFechaNacimiento(fecha);
+                    jugador.setCorreo(j.getString("Correo"));
+                    jugador.setContrasena(j.getString("Contraseña"));
+                    jugador.setTelefono(j.getString("Telefono"));
 
                     return jugador;
             } catch (Exception e) {
@@ -86,13 +92,12 @@ public class JugadorModel {
 
 
 
-    public Boolean modificarJugador(Jugador jugador){
+    public Boolean modificarJugador(String nombre,String apellido1, String apellido2, Date fechaNac,String contrasena,String telefono){
         Boolean ingreso = false;
         String res = "false";
 
-        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/modificar.php?nombre="+ jugador.getNombre() +
-                "&apellido1=" + jugador.getApellido1() + "&apellido2=" + jugador.getApellido2() + "&fechaNacimiento=" +jugador.getFechaNacimiento()+
-                "&correo=" + jugador.getCorreo() + "&pass=" + jugador.getContrasena() + "&telefono=" + jugador.getTelefono());
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/modificar.php?nombre="+ nombre +
+                "&apellido1=" + apellido1 + "&apellido2=" + apellido2 + "&fechaNacimiento=" + fechaNac + "&pass=" + contrasena + "&telefono=" + telefono);
 
         if (cnxExitosa) {
             String jsonString = obtenerJsonEnString();

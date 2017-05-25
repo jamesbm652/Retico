@@ -23,13 +23,14 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
     Button btnModificar;
     DatePickerDialog datePickerDialog;
 
+    Jugador jugadorActual;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manejo_jugadores);
 
         inicializarComponentes();
-
+        setValores();
     }
 
     private void inicializarComponentes(){
@@ -43,6 +44,16 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
         btnModificar = (Button)findViewById(R.id.btnModificar);
     }
 
+    public void setValores(){
+        Jugador jugadorActual = new Jugador();
+        txtNombre.setText(jugadorActual.getNombre());
+        txtApellido1.setText(jugadorActual.getApellido1());
+        txtApellido2.setText(jugadorActual.getApellido2());
+        txtFechaNacimiento.setText(jugadorActual.getFechaNacimiento().toString());
+        txtCorreo.setText(jugadorActual.getCorreo());
+        txtContrasena.setText(jugadorActual.getContrasena());
+        txtTelefono.setText(jugadorActual.getTelefono());
+    }
 
     @Override
     public void onClick(View v) {
@@ -55,28 +66,25 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
         }
 
 
-        final String nombre = txtNombre.getText().toString();
-        final String apellido1 = txtApellido1.getText().toString();
-        final String apellido2 = txtApellido2.getText().toString();
+        final String nombre = txtNombre.getText().toString().trim();
+        final String apellido1 = txtApellido1.getText().toString().trim();
+        final String apellido2 = txtApellido2.getText().toString().trim();
         final Date fechaNac = fecha;
-        final String correo = txtCorreo.getText().toString();
-        final String pass = txtContrasena.getText().toString();
-        final String tel = txtTelefono.getText().toString();
+        final String correo = txtCorreo.getText().toString().trim();
+        final String pass = txtContrasena.getText().toString().trim();
+        final String tel = txtTelefono.getText().toString().trim();
 
         if(!nombre.equals("") && !apellido1.equals("") &&  !apellido2.equals("") && !correo.equals("") && !pass.equals("") && !tel.equals("")){
             Thread tr = new Thread(){
                 @Override
                 public void run() {
-                    Jugador jugadorModificado = new Jugador(nombre,apellido1,apellido2,fechaNac,correo,pass,tel);
-                    final Boolean ingreso = jugadorModificado.modificarJugador(jugadorModificado);
+
+                    final Boolean ingreso = jugadorActual.modificarJugador(nombre,apellido1,apellido2,fechaNac,pass,tel);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
 
                             if (ingreso){
-                                Bundle extra = getIntent().getExtras();
-                                extra.get("jugador");
-                                Jugador jugadorActual = (Jugador)extra.get("jugador");
 
                                 jugadorActual.setNombre(nombre);
                                 jugadorActual.setApellido1(apellido1);
@@ -87,7 +95,6 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
 
                                 Toast.makeText(getApplicationContext(), "Los dato se han modificado", Toast.LENGTH_LONG).show();
                                 Intent i= new Intent(getApplicationContext(), Login.class);
-                                //i.putExtra("cod", txtCorreo.getText().toString());
                                 startActivity(i);
                             }else{
                                 Toast.makeText(getApplicationContext(), "Error al modificar", Toast.LENGTH_LONG).show();

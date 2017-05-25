@@ -58,9 +58,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                     public void run() {
 
                                         if (jugador != null) {
-                                            //Intent i= new Intent(getApplicationContext(), registroNotas.class);
-                                            //i.putExtra("cod", txtCorreo.getText().toString());
-                                            //startActivity(i);
+                                            Intent i= new Intent(getApplicationContext(), MenuPrincipal.class);
+                                            startActivity(i);
                                             Toast.makeText(getApplicationContext(), "Usuario valido", Toast.LENGTH_LONG).show();
                                         } else {
                                             Toast.makeText(getApplicationContext(), "Usuario invalido", Toast.LENGTH_LONG).show();

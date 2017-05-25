@@ -1,5 +1,8 @@
 package com.proyecto.udata.retico.Objetos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.proyecto.udata.retico.Modelos.JugadorModel;
 import com.proyecto.udata.retico.Modelos.RegistroModel;
 
@@ -9,15 +12,15 @@ import java.util.Date;
  * Created by James on 22/5/2017.
  */
 
-public class Jugador {
-    public int Id;
-    public String Nombre;
-    public String Apellido1;
-    public String Apellido2;
-    public Date FechaNacimiento;
-    public String Correo;
-    public String Contrasena;
-    public String Telefono;
+public class Jugador{
+    private static int Id;
+    private static String Nombre;
+    private static String Apellido1;
+    private static String Apellido2;
+    private static Date FechaNacimiento;
+    private static String Correo;
+    private static String Contrasena;
+    private static String Telefono;
 
     public Jugador(){}
 
@@ -42,68 +45,68 @@ public class Jugador {
         this.Telefono = telefono;
     }
 
-    public int getId() {
+    public static int getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public static void setId(int id) {
         Id = id;
     }
 
-    public String getNombre() {
+    public static String getNombre() {
         return Nombre;
     }
 
-    public void setNombre(String nombre) {
+    public static void setNombre(String nombre) {
         Nombre = nombre;
     }
 
-    public String getApellido1() {
+    public static String getApellido1() {
         return Apellido1;
     }
 
-    public void setApellido1(String apellido1) {
+    public static void setApellido1(String apellido1) {
         Apellido1 = apellido1;
     }
 
-    public String getApellido2() {
+    public static String getApellido2() {
         return Apellido2;
     }
 
-    public void setApellido2(String apellido2) {
+    public static void setApellido2(String apellido2) {
         Apellido2 = apellido2;
     }
 
-    public Date getFechaNacimiento() {
+    public static Date getFechaNacimiento() {
         return FechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public static void setFechaNacimiento(Date fechaNacimiento) {
         FechaNacimiento = fechaNacimiento;
     }
 
-    public String getCorreo() {
+    public static String getCorreo() {
         return Correo;
     }
 
-    public void setCorreo(String correo) {
+    public static void setCorreo(String correo) {
         Correo = correo;
     }
 
-    public String getContrasena() {
+    public static String getContrasena() {
         return Contrasena;
     }
 
-    public void setContrasena(String contrasena) {
+    public static void setContrasena(String contrasena) {
         Contrasena = contrasena;
     }
 
-    public String getTelefono() {
+    public static String getTelefono() {
         return Telefono;
     }
 
-    public void setTelefono(String telefono) {
-        Telefono = telefono;//
+    public static void setTelefono(String telefono) {
+        Telefono = telefono;
     }
 
     public Jugador obtenerJugador(String correo, String contrasena){
@@ -114,7 +117,7 @@ public class Jugador {
         return new RegistroModel().insertarJugador(this);
     }
 
-    public Boolean modificarJugador(Jugador jugadorModificado){
-        return new JugadorModel().modificarJugador(jugadorModificado);
+    public Boolean modificarJugador(String nombre,String apellido1, String apellido2, Date fechaNac,String contrasena,String telefono){
+        return new JugadorModel().modificarJugador(nombre,apellido1,apellido2,fechaNac,contrasena,telefono);
     }
 }
