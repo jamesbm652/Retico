@@ -12,6 +12,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by oscal on 23/5/2017.
@@ -58,8 +61,11 @@ public class RegistroModel {
         Boolean ingreso = false;
         String res = "false";
 
+        DateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+        String fechaCon = formato.format(jugador.getFechaNacimiento());
+
         boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/registro.php?nombre="+ jugador.getNombre() +
-                "&apellido1=" + jugador.getApellido1() + "&apellido2=" + jugador.getApellido2() + "&fechaNacimiento=" +jugador.getFechaNacimiento()+ "&correo=" +
+                "&apellido1=" + jugador.getApellido1() + "&apellido2=" + jugador.getApellido2() + "&fechaNacimiento=" + fechaCon + "&correo=" +
                 jugador.getCorreo() + "&pass=" + jugador.getContrasena() + "&telefono=" + jugador.getTelefono());
 
         if (cnxExitosa) {

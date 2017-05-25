@@ -18,6 +18,8 @@ import java.util.Calendar;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Registro extends AppCompatActivity implements View.OnClickListener{
 
@@ -49,8 +51,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // set day of month , month and year value in the edit text
-                                txtFechaNacimiento.setText(dayOfMonth + "/"
-                                        + (monthOfYear + 1) + "/" + year);
+                                txtFechaNacimiento.setText(year + "-"
+                                        + (monthOfYear + 1) + "-" + dayOfMonth);
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
@@ -75,48 +77,64 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
 
         Date fecha = null;
         try {
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             fecha = format.parse(txtFechaNacimiento.getText().toString());
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
 
-        final String nombre = txtNombre.getText().toString();
-        final String apellido1 = txtApellido1.getText().toString();
-        final String apellido2 = txtApellido2.getText().toString();
+        final String nombre = txtNombre.getText().toString().trim();
+        final String apellido1 = txtApellido1.getText().toString().trim();
+        final String apellido2 = txtApellido2.getText().toString().trim();
         final Date fechaNac = fecha;
-        final String correo = txtCorreo.getText().toString();
-        final String pass = txtContrasena.getText().toString();
-        final String tel = txtTelefono.getText().toString();
+        final String correo = txtCorreo.getText().toString().trim();
+        final String pass = txtContrasena.getText().toString().trim();
+        final String tel = txtTelefono.getText().toString().trim();
 
-        if(nombre != "" && apellido1 != "" &&  apellido2 != "" &&  correo != "" &&  pass != "" &&  tel != ""){
+        if(!nombre.equals("") && !apellido1.equals("") && !apellido2.equals("") && fecha != null && !correo.equals("") && !pass.equals("") && !tel.equals("")){
+            if (validarCorreo(correo)) {
+                Thread tr = new Thread() {
+                    @Override
+                    public void run() {
+                        final Boolean ingreso = new Jugador(nombre, apellido1, apellido2, fechaNac, correo, pass, tel).insertarJugador();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
 
-            Thread tr = new Thread(){
-                @Override
-                public void run() {
-                    final Boolean ingreso = new Jugador(nombre,apellido1,apellido2,fechaNac,correo,pass,tel).insertarJugador();
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            if (ingreso){
-                                Toast.makeText(getApplicationContext(), "Jugador registrado", Toast.LENGTH_LONG).show();
-                                Intent i= new Intent(getApplicationContext(), Login.class);
-                                //i.putExtra("cod", txtCorreo.getText().toString());
-                                startActivity(i);
-                            }else{
-                                Toast.makeText(getApplicationContext(), "Error al registrar", Toast.LENGTH_LONG).show();
+                                if (ingreso) {
+                                    Toast.makeText(getApplicationContext(), "Jugador registrado", Toast.LENGTH_LONG).show();
+                                    Intent i = new Intent(getApplicationContext(), Login.class);
+                                    //i.putExtra("cod", txtCorreo.getText().toString());
+                                    startActivity(i);
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Error al registrar", Toast.LENGTH_LONG).show();
+                                }
                             }
-                        }
-                    });
-                }
-            };
-            tr.start();
+                        });
+                    }
+                };
+                tr.start();
+            }else{
+                Toast.makeText(getApplicationContext(), "El formato del correo es incorrecto", Toast.LENGTH_LONG).show();
+            }
         }else{
             Toast.makeText(getApplicationContext(), "No deben quedar espacios vacíos", Toast.LENGTH_LONG).show();
         }
+    }
 
+    public static boolean validarCorreo(String correo) {
+        boolean isValid = false;
+
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        CharSequence inputStr = correo;
+
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+        if (matcher.matches()) {
+            isValid = true;
+        }
+        return isValid;
     }
 
 }
