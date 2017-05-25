@@ -166,6 +166,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:enabled="false"
             android:inputType="textEmailAddress"
             android:hint="example@gmail.com"
             android:backgroundTint="#799C5C"
