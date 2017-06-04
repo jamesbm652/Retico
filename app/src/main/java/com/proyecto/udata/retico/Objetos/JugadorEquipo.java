@@ -16,6 +16,8 @@ public class JugadorEquipo {
     private String Contrasena;
     private String Telefono;
 
+    public JugadorEquipo() {}
+
     public JugadorEquipo(String nombre, String apellido1, String apellido2, Date fechaNacimiento, String correo, String contrasena, String telefono) {
         Nombre = nombre;
         Apellido1 = apellido1;
