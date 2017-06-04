@@ -10,11 +10,16 @@
 
     <Button
         android:id="@+id/btnModificar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Mi perfil"
+        />
 
-
+    <Button
+        android:id="@+id/btnListarEquipos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lista de Equipos"
         />
 
 </LinearLayout>
