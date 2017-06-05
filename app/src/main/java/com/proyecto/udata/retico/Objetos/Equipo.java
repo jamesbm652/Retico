@@ -1,6 +1,6 @@
 package com.proyecto.udata.retico.Objetos;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by James on 4/6/2017.
@@ -11,11 +11,11 @@ public class Equipo {
     private String Nombre;
     private String Contrsaena;
     private JugadorEquipo Encargado;
-    private List<JugadorEquipo> listaJugadores;
+    private ArrayList<JugadorEquipo> listaJugadores;
 
     public Equipo(){}
 
-    public Equipo(String nombre, String contrsaena, JugadorEquipo encargado, List<JugadorEquipo> listaJugadores) {
+    public Equipo(String nombre, String contrsaena, JugadorEquipo encargado, ArrayList<JugadorEquipo> listaJugadores) {
         Nombre = nombre;
         Contrsaena = contrsaena;
         Encargado = encargado;
@@ -54,11 +54,11 @@ public class Equipo {
         Encargado = encargado;
     }
 
-    public List<JugadorEquipo> getListaJugadores() {
+    public ArrayList<JugadorEquipo> getListaJugadores() {
         return listaJugadores;
     }
 
-    public void setListaJugadores(List<JugadorEquipo> listaJugadores) {
+    public void setListaJugadores(ArrayList<JugadorEquipo> listaJugadores) {
         this.listaJugadores = listaJugadores;
     }
 

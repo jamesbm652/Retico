@@ -1,25 +1,32 @@
 package com.proyecto.udata.retico.Objetos;
 
-import java.util.List;
+import com.proyecto.udata.retico.Modelos.EquipoModel;
+
+import java.util.ArrayList;
+
 
 /**
  * Created by James on 4/6/2017.
  */
 
 public class ManejadorEquipo {
-    private List<Equipo> listaEquipos;
+    private ArrayList<Equipo> listaEquipos;
 
     public ManejadorEquipo() {}
 
-    public ManejadorEquipo(List<Equipo> listaEquipos) {
+    public ManejadorEquipo(ArrayList<Equipo> listaEquipos) {
         this.listaEquipos = listaEquipos;
     }
 
-    public List<Equipo> getListaEquipos() {
+    public ArrayList<Equipo> getListaEquipos() {
         return listaEquipos;
     }
 
-    public void setListaEquipos(List<Equipo> listaEquipos) {
+    public void setListaEquipos(ArrayList<Equipo> listaEquipos) {
         this.listaEquipos = listaEquipos;
+    }
+
+    public void cargarListaEquipos(){
+        listaEquipos = new EquipoModel().obtenerListaEquipos();
     }
 }
