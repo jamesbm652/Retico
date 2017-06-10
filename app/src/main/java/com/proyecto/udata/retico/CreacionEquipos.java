@@ -32,7 +32,7 @@ public class CreacionEquipos extends AppCompatActivity implements View.OnClickLi
     private void inicializarComponentes(){
         txtNombre = (EditText)findViewById(R.id.txtNombreEquipo);
         txtLocalizacion = (EditText)findViewById(R.id.txtLocalizacionEquipo);
-        txtContrasena = (EditText)findViewById(R.id.txtContrasena);
+        txtContrasena = (EditText)findViewById(R.id.txtContrasenaEquipo);
         txtEncargado = (EditText)findViewById(R.id.txtEcargadoEquipo);
         btnCrearEquipo = (Button)findViewById(R.id.btnCrearEquipo);
     }
@@ -59,6 +59,9 @@ public class CreacionEquipos extends AppCompatActivity implements View.OnClickLi
 
                             if (equipoCreado) {
                                 Toast.makeText(getApplicationContext(), "Equipo creado correctamente", Toast.LENGTH_SHORT).show();
+                                txtNombre.setText("");
+                                txtLocalizacion.setText("");
+                                txtContrasena.setText("");
                                 //Intent i = new Intent(getApplicationContext(), Login.class);
                                 //i.putExtra("cod", txtCorreo.getText().toString());
                                 //startActivity(i);

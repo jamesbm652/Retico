@@ -118,17 +118,14 @@ public class EquipoModel {
     public Boolean insertarEquipo(Equipo equipo){
         Boolean ingreso = false;
         String res = "false";
-        /*
-        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/crearEquipo.php?nombre="+ jugador.getNombre() +
-                "&apellido1=" + jugador.getApellido1() + "&apellido2=" + jugador.getApellido2() + "&fechaNacimiento=" + fechaCon + "&correo=" +
-                jugador.getCorreo() + "&pass=" + jugador.getContrasena() + "&telefono=" + jugador.getTelefono());
 
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/crearEquipo.php?nombre="+ equipo.getNombre() +
+                "&pass=" + equipo.getContrsaena() + "&localizacion=" + equipo.getLocalizacion() + "&idEncargado="+ equipo.getEncargado().getId());
         if (cnxExitosa) {
             String jsonString = obtenerJsonEnString();
             try {
                 JSONObject jsonObject = new JSONObject(jsonString);
                 res = jsonObject.getString("respuesta");
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -136,7 +133,7 @@ public class EquipoModel {
         if (cnxExitosa && res.equals("true")) {
             ingreso = true;
         }
-        */
+
         return ingreso;
     }
 }
