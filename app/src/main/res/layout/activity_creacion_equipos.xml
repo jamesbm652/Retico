@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="15dp"
+    tools:context="com.proyecto.udata.retico.CreacionEquipos">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Complete los datos del equipo:"
+        android:textSize="25dp"
+        android:textColor="#404040"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp">
+
+        <TextView
+            android:id="@+id/lblNombreEquipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre:"
+            android:textSize="15dp"
+            android:textColor="#404040"
+            />
+
+        <EditText
+            android:id="@+id/txtNombreEquipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="text"
+            android:hint=""
+            android:backgroundTint="#799C5C"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp">
+
+        <TextView
+            android:id="@+id/lblLocalizacionEquipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Localización:"
+            android:textSize="15dp"
+            android:textColor="#404040"
+            />
+
+        <EditText
+            android:id="@+id/txtLocalizacionEquipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="text"
+            android:hint=""
+            android:backgroundTint="#799C5C"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp">
+
+        <TextView
+            android:id="@+id/lblContrasenaEquipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contraseña:"
+            android:textSize="15dp"
+            android:textColor="#404040"
+            />
+
+        <EditText
+            android:id="@+id/txtContrasenaEquipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="text"
+            android:hint=""
+            android:backgroundTint="#799C5C"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp">
+
+        <TextView
+            android:id="@+id/lblEncargadoEquipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Encargado del Equipo:"
+            android:textSize="15dp"
+            android:textColor="#404040"
+            />
+
+        <EditText
+            android:id="@+id/txtEcargadoEquipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="#799C5C"
+            android:enabled="false"
+            android:hint=""
+            android:inputType="none" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCrearEquipo"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Crear"
+        />
+
+</LinearLayout>

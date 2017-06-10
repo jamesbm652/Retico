@@ -22,4 +22,11 @@
         android:text="Lista de Equipos"
         />
 
+    <Button
+        android:id="@+id/btnCreacionEquipos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Crear Equipo"
+        />
+
 </LinearLayout>

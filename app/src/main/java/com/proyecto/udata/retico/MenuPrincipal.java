@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MenuPrincipal extends AppCompatActivity implements View.OnClickListener{
 
-    Button btnModificar, btnListarEquipos;
+    Button btnModificar, btnListarEquipos, btnCrearEquipo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,9 +16,11 @@ public class MenuPrincipal extends AppCompatActivity implements View.OnClickList
 
         btnModificar = (Button)findViewById(R.id.btnModificar);
         btnListarEquipos = (Button)findViewById(R.id.btnListarEquipos);
+        btnCrearEquipo = (Button)findViewById(R.id.btnCreacionEquipos);
 
         btnModificar.setOnClickListener(this);
         btnListarEquipos.setOnClickListener(this);
+        btnCrearEquipo.setOnClickListener(this);
     }
 
     @Override
@@ -32,6 +34,9 @@ public class MenuPrincipal extends AppCompatActivity implements View.OnClickList
                 Intent ventListaEquipos = new Intent(getApplicationContext(), ListaEquipos.class);
                 startActivity(ventListaEquipos);
                 break;
+            case R.id.btnCreacionEquipos:
+                Intent ventCrearEquipos = new Intent(getApplicationContext(), CreacionEquipos.class);
+                startActivity(ventCrearEquipos);
         }
 
     }

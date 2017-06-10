@@ -1,5 +1,7 @@
 package com.proyecto.udata.retico.Objetos;
 
+import com.proyecto.udata.retico.Modelos.EquipoModel;
+
 import java.util.ArrayList;
 
 /**
@@ -10,14 +12,16 @@ public class Equipo {
     private int Id;
     private String Nombre;
     private String Contrsaena;
+    private String Localizacion;
     private JugadorEquipo Encargado;
     private ArrayList<JugadorEquipo> listaJugadores;
 
     public Equipo(){}
 
-    public Equipo(String nombre, String contrsaena, JugadorEquipo encargado, ArrayList<JugadorEquipo> listaJugadores) {
+    public Equipo(String nombre, String contrsaena, String localizacion, JugadorEquipo encargado, ArrayList<JugadorEquipo> listaJugadores) {
         Nombre = nombre;
         Contrsaena = contrsaena;
+        Localizacion = localizacion;
         Encargado = encargado;
         this.listaJugadores = listaJugadores;
     }
@@ -46,6 +50,14 @@ public class Equipo {
         Contrsaena = contrsaena;
     }
 
+    public String getLocalizacion() {
+        return Localizacion;
+    }
+
+    public void setLocalizacion(String localizacion) {
+        Localizacion = localizacion;
+    }
+
     public JugadorEquipo getEncargado() {
         return Encargado;
     }
@@ -63,7 +75,7 @@ public class Equipo {
     }
 
     public Boolean insertarEquipo(){
-        return true;
+        return new EquipoModel().insertarEquipo(this);
     }
 
     public Boolean modificarEquipo(){

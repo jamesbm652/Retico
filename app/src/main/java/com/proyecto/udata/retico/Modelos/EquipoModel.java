@@ -99,4 +99,29 @@ public class EquipoModel {
             return lista;
         }
     }
+
+    public Boolean insertarEquipo(Equipo equipo){
+        Boolean ingreso = false;
+        String res = "false";
+        /*
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/crearEquipo.php?nombre="+ jugador.getNombre() +
+                "&apellido1=" + jugador.getApellido1() + "&apellido2=" + jugador.getApellido2() + "&fechaNacimiento=" + fechaCon + "&correo=" +
+                jugador.getCorreo() + "&pass=" + jugador.getContrasena() + "&telefono=" + jugador.getTelefono());
+
+        if (cnxExitosa) {
+            String jsonString = obtenerJsonEnString();
+            try {
+                JSONObject jsonObject = new JSONObject(jsonString);
+                res = jsonObject.getString("respuesta");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cnxExitosa && res.equals("true")) {
+            ingreso = true;
+        }
+        */
+        return ingreso;
+    }
 }

@@ -21,7 +21,8 @@
         <activity android:name=".Registro" />
         <activity android:name=".ManejoJugadores" />
         <activity android:name=".MenuPrincipal" />
-        <activity android:name=".ListaEquipos"></activity>
+        <activity android:name=".ListaEquipos" />
+        <activity android:name=".CreacionEquipos"></activity>
     </application>
 
 </manifest>
