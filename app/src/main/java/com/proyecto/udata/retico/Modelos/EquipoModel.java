@@ -65,9 +65,9 @@ public class EquipoModel {
         if (cnxExitosa){
             String jsonString = obtenerJsonEnString();
             try {
-                JSONArray jsonArray = new JSONArray(jsonString);
-                for (int i = 0; i < jsonArray.length(); i++){
-                    JSONObject j = (JSONObject) jsonArray.get(i);
+                JSONObject jsonObject = new JSONObject(jsonString);
+                for (int i = 0; i < jsonObject.length(); i++){
+                    JSONObject j = (JSONObject) jsonObject.get("Equipo"+i);
 
                     JugadorEquipo p = new JugadorEquipo();
                     p.setId(j.getInt("IdEncargado"));
@@ -88,6 +88,21 @@ public class EquipoModel {
                     e.setContrsaena(j.getString("ContrasenaEquipo"));
                     e.setEncargado(p);
 
+                    ArrayList<JugadorEquipo> listaJugadores = new ArrayList<>();
+                    JSONObject listaJug = (JSONObject) j.get("Jugadores");
+                    for (int h = 0; h < listaJug.length(); h++){
+                        JSONObject jug = (JSONObject) listaJug.get("Jugador"+h);
+                        JugadorEquipo jugador = new JugadorEquipo();
+                        jugador.setNombre(jug.getString("Nombre"));
+                        jugador.setApellido1(jug.getString("Apellido1"));
+                        jugador.setApellido2(jug.getString("Apellido2"));
+
+                        Date fechaJugador = formato.parse(jug.getString("FechaNacimiento"));
+                        jugador.setFechaNacimiento(fechaJugador);
+                        listaJugadores.add(jugador);
+                    }
+
+                    e.setListaJugadores(listaJugadores);
                     lista.add(e);
                 }
                 return lista;
