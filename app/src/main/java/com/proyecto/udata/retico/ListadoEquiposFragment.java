@@ -1,5 +1,6 @@
 package com.proyecto.udata.retico;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -45,6 +46,14 @@ public class ListadoEquiposFragment extends Fragment{
         });
 
         return view;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try{
+            onItemSelectedListener = (OnItemSelectedListener) activity;
+        }catch (Exception e){}
     }
 
     @Override
