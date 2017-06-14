@@ -32,7 +32,6 @@ public class ListadoEquiposFragment extends Fragment{
         view = inflater.inflate(R.layout.fragment_listado_equipos, container, false);
         listaEquipos = (ListView) view.findViewById(R.id.listaEquipos);
         ArrayList<String> elementosLista = getArguments().getStringArrayList("lista");
-        //String[] items = {"Jose", "Fernando", "Walter"};
 
         ArrayAdapter adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
 
@@ -41,7 +40,6 @@ public class ListadoEquiposFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 onItemSelectedListener.itemSelected(position);
-                Toast.makeText(getActivity(), "Selecciono la opcion " + (position+1), Toast.LENGTH_SHORT).show();
             }
         });
 
