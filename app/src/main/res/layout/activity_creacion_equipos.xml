@@ -5,126 +5,158 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="15dp"
     tools:context="com.proyecto.udata.retico.CreacionEquipos">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:layout_marginBottom="15dp"
-        android:text="Complete los datos del equipo:"
-        android:textSize="25dp"
-        android:textColor="#404040"
-        />
+        android:background="@color/colorPrimary"
+        android:elevation="8dp"
+
+        >
+
+        <ImageButton
+            android:id="@+id/btnBackSpaceCrearEquipos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_keyboard_backspace_white_24dp"
+            android:layout_gravity="left"
+            android:clickable="true"
+            />
+
+
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="15dp">
 
         <TextView
-            android:id="@+id/lblNombreEquipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre:"
-            android:textSize="15dp"
-            android:textColor="#404040"
+            android:layout_marginBottom="15dp"
+            android:text="Complete los datos del equipo:"
+            android:textSize="25dp"
+            android:textColor="#212121"
             />
 
-        <EditText
-            android:id="@+id/txtNombreEquipo"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:inputType="text"
-            android:hint=""
-            android:backgroundTint="#799C5C"
-            />
-    </LinearLayout>
+            android:layout_marginBottom="7dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp">
+            <TextView
+                android:id="@+id/lblNombreEquipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre:"
+                android:textSize="15dp"
+                android:textColor="#212121"
+                />
 
-        <TextView
-            android:id="@+id/lblLocalizacionEquipo"
+            <EditText
+                android:id="@+id/txtNombreEquipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:inputType="text"
+                android:hint=""
+                android:backgroundTint="#757575"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp">
+
+            <TextView
+                android:id="@+id/lblLocalizacionEquipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Localización:"
+                android:textSize="15dp"
+                android:textColor="#212121"
+                />
+
+            <EditText
+                android:id="@+id/txtLocalizacionEquipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:inputType="text"
+                android:hint=""
+                android:backgroundTint="#757575"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp">
+
+            <TextView
+                android:id="@+id/lblContrasenaEquipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contraseña:"
+                android:textSize="15dp"
+                android:textColor="#212121"
+                />
+
+            <EditText
+                android:id="@+id/txtContrasenaEquipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:inputType="text"
+                android:hint=""
+                android:backgroundTint="#757575"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp">
+
+            <TextView
+                android:id="@+id/lblEncargadoEquipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Encargado del Equipo:"
+                android:textSize="15dp"
+                android:textColor="#212121"
+                />
+
+            <EditText
+                android:id="@+id/txtEcargadoEquipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="#757575"
+                android:enabled="false"
+                android:hint=""
+                android:inputType="none" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnCrearEquipo"
+            android:layout_marginTop="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Localización:"
-            android:textSize="15dp"
-            android:textColor="#404040"
-            />
-
-        <EditText
-            android:id="@+id/txtLocalizacionEquipo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:inputType="text"
-            android:hint=""
-            android:backgroundTint="#799C5C"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp">
-
-        <TextView
-            android:id="@+id/lblContrasenaEquipo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Contraseña:"
-            android:textSize="15dp"
-            android:textColor="#404040"
-            />
-
-        <EditText
-            android:id="@+id/txtContrasenaEquipo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:inputType="text"
-            android:hint=""
-            android:backgroundTint="#799C5C"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:text="Crear"
             />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp">
-
-        <TextView
-            android:id="@+id/lblEncargadoEquipo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Encargado del Equipo:"
-            android:textSize="15dp"
-            android:textColor="#404040"
-            />
-
-        <EditText
-            android:id="@+id/txtEcargadoEquipo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:backgroundTint="#799C5C"
-            android:enabled="false"
-            android:hint=""
-            android:inputType="none" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnCrearEquipo"
-        android:layout_marginTop="25dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Crear"
-        />
 
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
     TextView txtNombre,txtApellido1,txtApellido2, txtFechaNacimiento,txtTelefono, txtCorreo, txtContrasena;
     Button btnModificar;
     DatePickerDialog datePickerDialog;
+    ImageButton btnBackSpaceModificar;
 
     Jugador jugadorActual;
     @Override
@@ -32,6 +34,7 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
 
         inicializarComponentes();
         btnModificar.setOnClickListener(this);
+        btnBackSpaceModificar.setOnClickListener(this);
         setValores();
     }
 
@@ -44,6 +47,7 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
         txtCorreo = (TextView)findViewById(R.id.txtCorreo);
         txtContrasena = (TextView)findViewById(R.id.txtContrasena);
         btnModificar = (Button)findViewById(R.id.btnModificar);
+        btnBackSpaceModificar = (ImageButton)findViewById(R.id.btnBackSpaceModificar);
     }
 
     public void setValores(){
@@ -63,54 +67,62 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        Date fecha = null;
-        try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            fecha = format.parse(txtFechaNacimiento.getText().toString());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        switch (v.getId()){
+            case R.id.btnModificar:
+                Date fecha = null;
+                try {
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                    fecha = format.parse(txtFechaNacimiento.getText().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
 
-        final String nombre = txtNombre.getText().toString().trim();
-        final String apellido1 = txtApellido1.getText().toString().trim();
-        final String apellido2 = txtApellido2.getText().toString().trim();
-        final Date fechaNac = fecha;
-        final String correo = txtCorreo.getText().toString().trim();
-        final String pass = txtContrasena.getText().toString().trim();
-        final String tel = txtTelefono.getText().toString().trim();
+                final String nombre = txtNombre.getText().toString().trim();
+                final String apellido1 = txtApellido1.getText().toString().trim();
+                final String apellido2 = txtApellido2.getText().toString().trim();
+                final Date fechaNac = fecha;
+                final String correo = txtCorreo.getText().toString().trim();
+                final String pass = txtContrasena.getText().toString().trim();
+                final String tel = txtTelefono.getText().toString().trim();
 
-        if(!nombre.equals("") && !apellido1.equals("") &&  !apellido2.equals("") && !pass.equals("") && !tel.equals("")){
-            Thread tr = new Thread(){
-                @Override
-                public void run() {
-
-                    final Boolean ingreso = jugadorActual.modificarJugador(jugadorActual.getId(),nombre,apellido1,apellido2,fechaNac,correo,pass,tel);
-                    runOnUiThread(new Runnable() {
+                if(!nombre.equals("") && !apellido1.equals("") &&  !apellido2.equals("") && !pass.equals("") && !tel.equals("")){
+                    Thread tr = new Thread(){
                         @Override
                         public void run() {
 
-                            if (ingreso){
+                            final Boolean ingreso = jugadorActual.modificarJugador(jugadorActual.getId(),nombre,apellido1,apellido2,fechaNac,correo,pass,tel);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
 
-                                jugadorActual.setNombre(nombre);
-                                jugadorActual.setApellido1(apellido1);
-                                jugadorActual.setApellido2(apellido2);
-                                jugadorActual.setFechaNacimiento(fechaNac);
-                                jugadorActual.setContrasena(pass);
-                                jugadorActual.setTelefono(tel);
+                                    if (ingreso){
 
-                                Toast.makeText(getApplicationContext(), "Los datos se han modificado", Toast.LENGTH_LONG).show();
-                            }else{
-                                Toast.makeText(getApplicationContext(), "Error al modificar", Toast.LENGTH_LONG).show();
-                            }
+                                        jugadorActual.setNombre(nombre);
+                                        jugadorActual.setApellido1(apellido1);
+                                        jugadorActual.setApellido2(apellido2);
+                                        jugadorActual.setFechaNacimiento(fechaNac);
+                                        jugadorActual.setContrasena(pass);
+                                        jugadorActual.setTelefono(tel);
+
+                                        Toast.makeText(getApplicationContext(), "Los datos se han modificado", Toast.LENGTH_LONG).show();
+                                    }else{
+                                        Toast.makeText(getApplicationContext(), "Error al modificar", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
                         }
-                    });
+                    };
+                    tr.start();
+                }else{
+                    Toast.makeText(getApplicationContext(), "No deben quedar espacios vacíos", Toast.LENGTH_LONG).show();
                 }
-            };
-            tr.start();
-        }else{
-            Toast.makeText(getApplicationContext(), "No deben quedar espacios vacíos", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.btnBackSpaceModificar:
+                startActivity(new Intent(getApplicationContext(),MenuPrincipal.class));
+                break;
         }
+
     }
 
 }

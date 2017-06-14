@@ -7,9 +7,14 @@
     android:layout_height="match_parent"
     tools:context="com.proyecto.udata.retico.ListaEquipos">
 
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/fragment_Content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></RelativeLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+    </FrameLayout>
 
 </LinearLayout>
