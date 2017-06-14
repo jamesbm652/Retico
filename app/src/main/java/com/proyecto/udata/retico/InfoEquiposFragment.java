@@ -18,11 +18,12 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-
-        btnBackSpaceMostrarEquipos = (ImageButton) getView().findViewById(R.id.btnBackSpaceMostrarEquipos);
+        View view;
+        view = inflater.inflate(R.layout.fragment_info_equipos, container, false);
+        btnBackSpaceMostrarEquipos = (ImageButton)view.findViewById(R.id.btnBackSpaceMostrarEquipos);
         btnBackSpaceMostrarEquipos.setOnClickListener(this);
 
-        return inflater.inflate(R.layout.fragment_info_equipos, container, false);
+        return view;
     }
 
     @Override
