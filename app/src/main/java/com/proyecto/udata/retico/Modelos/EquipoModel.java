@@ -86,6 +86,7 @@ public class EquipoModel {
                     e.setId(j.getInt("IdEquipo"));
                     e.setNombre(j.getString("NombreEquipo"));
                     e.setContrsaena(j.getString("ContrasenaEquipo"));
+                    e.setLocalizacion(j.getString("LocalizacionEquipo"));
                     e.setEncargado(p);
 
                     ArrayList<JugadorEquipo> listaJugadores = new ArrayList<>();
