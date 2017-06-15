@@ -41,7 +41,6 @@ public class ListadoEquiposFragment extends Fragment implements View.OnClickList
         btnBackSpaceListaEquipos.setOnClickListener(this);
         btnFAB.setOnClickListener(this);
         ArrayList<String> elementosLista = getArguments().getStringArrayList("lista");
-        //String[] items = {"Jose", "Fernando", "Walter"};
 
         ArrayAdapter adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
 
@@ -50,7 +49,6 @@ public class ListadoEquiposFragment extends Fragment implements View.OnClickList
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 onItemSelectedListener.itemSelected(position);
-                Toast.makeText(getActivity(), "Selecciono la opcion " + (position+1), Toast.LENGTH_SHORT).show();
             }
         });
 
