@@ -58,7 +58,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/navigationMenu"
-        android:layout_gravity="start">
+        android:layout_gravity="start"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,26 +89,120 @@
 
             </android.support.v7.widget.Toolbar>
 
-            <Button
-                android:id="@+id/btnModificar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mi perfil"
-                />
 
-            <Button
-                android:id="@+id/btnListarEquipos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lista de Equipos"
-                />
 
-            <Button
-                android:id="@+id/btnCreacionEquipos"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Crear Equipo"
-                />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <!-- lista
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/txtMiPerfil"
+                            android:text="Mi perfil"
+                            android:textColor="#212121"
+                            android:textSize="20sp"
+                            />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/txtListaEquipos"
+                            android:text="Ver equipos"
+                            android:textColor="#212121"
+                            android:textSize="20sp"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/txtCrearEquipo"
+                            android:text="Crear equipo"
+                            android:textColor="#212121"
+                            android:textSize="20sp"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+                -->
+
+                <Button
+                    android:id="@+id/btnModificar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mi perfil"
+
+                    />
+
+                <Button
+                    android:id="@+id/btnListarEquipos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lista de Equipos"
+                    />
+
+                <Button
+                    android:id="@+id/btnCreacionEquipos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Crear Equipo"
+                    />
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
     </android.support.design.widget.NavigationView>
