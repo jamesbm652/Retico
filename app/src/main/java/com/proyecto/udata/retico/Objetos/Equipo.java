@@ -81,4 +81,6 @@ public class Equipo {
     public Boolean modificarEquipo(){
         return true;
     }
+
+    public Boolean unirJugador(int idJugador,int idEquipo){return new EquipoModel().unirJugador(idJugador,idEquipo);}
 }

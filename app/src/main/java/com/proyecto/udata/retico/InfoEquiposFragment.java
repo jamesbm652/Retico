@@ -1,6 +1,8 @@
 package com.proyecto.udata.retico;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,9 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.proyecto.udata.retico.Objetos.Equipo;
+import com.proyecto.udata.retico.Objetos.Jugador;
 
 import java.util.ArrayList;
 
@@ -19,17 +27,25 @@ import java.util.ArrayList;
  */
 
 public class InfoEquiposFragment extends Fragment implements View.OnClickListener{
+
+    ArrayList<String> elementosLista;
     EditText txtNombreEquipo, txtEncargado, txtPromedioEdad, txtLocalizacion, txtContacto;
     ListView listaJugadores;
     ImageButton btnBackSpaceMostrarEquipos;
-
+    Button btnUnirse;
+    View view,view2;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view;
+
         view = inflater.inflate(R.layout.fragment_info_equipos, container, false);
         btnBackSpaceMostrarEquipos = (ImageButton)view.findViewById(R.id.btnBackSpaceMostrarEquipos);
+        btnUnirse = (Button)view.findViewById(R.id.btnUnirse);
+        /*if(new Jugador().esEncargado()){
+            btnUnirse.setClickable(false);
+        }*/
         btnBackSpaceMostrarEquipos.setOnClickListener(this);
+        btnUnirse.setOnClickListener(this);
 
         inicializarComponentes(view);
 
@@ -39,7 +55,7 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
         txtLocalizacion.setText(getArguments().getString("localizacion"));
         txtContacto.setText(getArguments().getString("contacto"));
 
-        ArrayList<String> elementosLista = getArguments().getStringArrayList("listaJugadores");
+        elementosLista = getArguments().getStringArrayList("listaJugadores");
         ArrayAdapter adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
         listaJugadores.setAdapter(adaptador);
 
@@ -61,6 +77,55 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
             case R.id.btnBackSpaceMostrarEquipos:
                 startActivity(new Intent(v.getContext(),ListaEquipos.class));
                 break;
+            case R.id.btnUnirse:
+                if(validarUnionAlEquipo(new Jugador().getNombreCompleto())){
+                    Toast.makeText(getActivity().getApplicationContext(),"Ya eres miembro de " + getArguments().getString("nombreEquipo"),Toast.LENGTH_SHORT).show();
+                }else {
+
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    View view2 = (LayoutInflater.from(getActivity()).inflate(R.layout.campos_popup, null));
+                    Button btnUnirseAlEquipo = (Button) view2.findViewById(R.id.btnUnirseAlEquipo);
+                    TextView titulo = (TextView) view2.findViewById(R.id.tituloPopup);
+                    final EditText pass = (EditText) view2.findViewById(R.id.txtPass);
+
+                    titulo.setText(titulo.getText().toString() + getArguments().getString("nombreEquipo"));
+                    btnUnirseAlEquipo.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (pass.getText().toString().isEmpty()) {
+                                Toast.makeText(getActivity().getApplicationContext(), "Debe ingresar la contraseña", Toast.LENGTH_SHORT).show();
+                            } else {
+                                if (getArguments().getString("contrasena").equals(pass.getText().toString())) {
+                                    if (!(validarUnionAlEquipo(new Jugador().getNombreCompleto())) && new Equipo().unirJugador(new Jugador().getId(), getArguments().getInt("idEquipo"))) {
+                                        elementosLista.add(new Jugador().getNombreCompleto());
+                                        ArrayAdapter adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
+                                        listaJugadores.setAdapter(adaptador);
+                                        pass.setText("");
+                                        Toast.makeText(getActivity().getApplicationContext(), "Ahora eres un nuevo jugador de " + getArguments().getString("nombreEquipo"), Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Toast.makeText(getActivity().getApplicationContext(),"Ya eres jugador de " + getArguments().getString("nombreEquipo"),Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(getActivity().getApplicationContext(), "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+                        }
+                    });
+                    builder.setView(view2);
+                    builder.show();
+                }
+                break;
         }
+    }
+
+
+    public Boolean validarUnionAlEquipo(String nombre){
+        for (String n: elementosLista) {
+            if(n.equals(nombre)){
+                return true;
+            }
+        }
+        return false;
     }
 }
