@@ -96,7 +96,7 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                                 Toast.makeText(getActivity().getApplicationContext(), "Debe ingresar la contraseña", Toast.LENGTH_SHORT).show();
                             } else {
                                 if (getArguments().getString("contrasena").equals(pass.getText().toString())) {
-                                    if (!(validarUnionAlEquipo(new Jugador().getNombreCompleto())) && new Equipo().unirJugador(new Jugador().getId(), getArguments().getInt("idEquipo"))) {
+                                    if (validarUnionAlEquipo(new Jugador().getNombreCompleto()) && new Equipo().unirJugador(new Jugador().getId(), getArguments().getInt("idEquipo"))) {
                                         elementosLista.add(new Jugador().getNombreCompleto());
                                         ArrayAdapter adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
                                         listaJugadores.setAdapter(adaptador);
@@ -123,9 +123,9 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
     public Boolean validarUnionAlEquipo(String nombre){
         for (String n: elementosLista) {
             if(n.equals(nombre)){
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }
