@@ -86,6 +86,7 @@ public class EquipoModel {
                     e.setId(j.getInt("IdEquipo"));
                     e.setNombre(j.getString("NombreEquipo"));
                     e.setContrsaena(j.getString("ContrasenaEquipo"));
+                    e.setLocalizacion(j.getString("LocalizacionEquipo"));
                     e.setEncargado(p);
 
                     ArrayList<JugadorEquipo> listaJugadores = new ArrayList<>();
@@ -136,4 +137,26 @@ public class EquipoModel {
 
         return ingreso;
     }
+
+    public Boolean unirJugador(int idJugador, int idEquipo){
+        Boolean unir = false;
+        String res = "false";
+
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/unirJugador.php?idJugador="+idJugador+ "&idEquipo="+idEquipo);
+        if (cnxExitosa) {
+            String jsonString = obtenerJsonEnString();
+            try {
+                JSONObject jsonObject = new JSONObject(jsonString);
+                res = jsonObject.getString("respuesta");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cnxExitosa && res.equals("true")) {
+            unir = true;
+        }
+
+        return unir;
+    }
+
 }

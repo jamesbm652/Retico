@@ -82,9 +82,11 @@ public class ListaEquipos extends AppCompatActivity implements ListadoEquiposFra
         JugadorEquipo encargado = equipoSeleccionado.getEncargado();
 
         bundle2.putString("nombreEquipo", equipoSeleccionado.getNombre());
+        bundle2.putInt("idEquipo",equipoSeleccionado.getId());
         bundle2.putString("nombreEncargado", encargado.getNombre()+" "+encargado.getApellido1()+" "+encargado.getApellido2());
         bundle2.putString("localizacion", equipoSeleccionado.getLocalizacion());
         bundle2.putString("contacto", encargado.getTelefono());
+        bundle2.putString("contrasena",equipoSeleccionado.getContrsaena());
         bundle2.putInt("edadPromedio", calcularPromedioEdad(equipoSeleccionado));
         bundle2.putStringArrayList("listaJugadores", convertirListaDeJugadoresAString(equipoSeleccionado));
         InfoEquiposFragment infoEquiposFrag = new InfoEquiposFragment();

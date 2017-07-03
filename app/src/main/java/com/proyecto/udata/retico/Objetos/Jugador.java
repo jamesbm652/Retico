@@ -61,6 +61,10 @@ public class Jugador{
         Nombre = nombre;
     }
 
+    public static String getNombreCompleto(){
+        return Nombre + " " + Apellido1 + " " + Apellido2;
+    }
+
     public static String getApellido1() {
         return Apellido1;
     }
