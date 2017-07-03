@@ -32,8 +32,8 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
     EditText txtNombreEquipo, txtEncargado, txtPromedioEdad, txtLocalizacion, txtContacto;
     ListView listaJugadores;
     ImageButton btnBackSpaceMostrarEquipos;
-    Button btnUnirse;
-    View view,view2;
+    Button btnUnirse, btnRetar;
+    View view;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -41,11 +41,13 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
         view = inflater.inflate(R.layout.fragment_info_equipos, container, false);
         btnBackSpaceMostrarEquipos = (ImageButton)view.findViewById(R.id.btnBackSpaceMostrarEquipos);
         btnUnirse = (Button)view.findViewById(R.id.btnUnirse);
+        btnRetar = (Button)view.findViewById(R.id.btnRetar);
         /*if(new Jugador().esEncargado()){
             btnUnirse.setClickable(false);
         }*/
         btnBackSpaceMostrarEquipos.setOnClickListener(this);
         btnUnirse.setOnClickListener(this);
+        btnRetar.setOnClickListener(this);
 
         inicializarComponentes(view);
 
@@ -115,6 +117,10 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                     builder.setView(view2);
                     builder.show();
                 }
+                break;
+            case R.id.btnRetar:
+                Intent ventRetarEquipo = new Intent(getActivity(), RetarEquipos.class);
+                startActivity(ventRetarEquipo);
                 break;
         }
     }
