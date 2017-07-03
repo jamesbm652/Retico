@@ -23,6 +23,7 @@
         <activity android:name=".MenuPrincipal" />
         <activity android:name=".ListaEquipos" />
         <activity android:name=".CreacionEquipos" />
+        <activity android:name=".RetarEquipos"></activity>
     </application>
 
 </manifest>
