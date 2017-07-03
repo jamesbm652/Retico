@@ -138,11 +138,11 @@ public class EquipoModel {
         return ingreso;
     }
 
-    public Boolean unirJugador(int idJugador, int idEquipo){
+    public Boolean unirJugador(int idJugador, int idequipo){
         Boolean unir = false;
         String res = "false";
-
-        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/unirJugador.php?idJugador="+idJugador+ "&idEquipo="+idEquipo);
+        String query = "https://ws-android-gestion-multim.c9users.io/unirJugador.php?idJugador=" + idJugador + "&idEquipo=" + idequipo;
+        boolean cnxExitosa = conexionConServidor(query);
         if (cnxExitosa) {
             String jsonString = obtenerJsonEnString();
             try {

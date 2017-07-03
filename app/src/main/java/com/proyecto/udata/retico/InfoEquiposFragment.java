@@ -78,7 +78,7 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                 startActivity(new Intent(v.getContext(),ListaEquipos.class));
                 break;
             case R.id.btnUnirse:
-                if(validarUnionAlEquipo(new Jugador().getNombreCompleto())){
+                if(!validarUnionAlEquipo(new Jugador().getNombreCompleto())){
                     Toast.makeText(getActivity().getApplicationContext(),"Ya eres miembro de " + getArguments().getString("nombreEquipo"),Toast.LENGTH_SHORT).show();
                 }else {
 
@@ -96,14 +96,14 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                                 Toast.makeText(getActivity().getApplicationContext(), "Debe ingresar la contraseña", Toast.LENGTH_SHORT).show();
                             } else {
                                 if (getArguments().getString("contrasena").equals(pass.getText().toString())) {
-                                    if (validarUnionAlEquipo(new Jugador().getNombreCompleto()) && new Equipo().unirJugador(new Jugador().getId(), getArguments().getInt("idEquipo"))) {
+                                    if (new Equipo().unirJugador(new Jugador().getId(), getArguments().getInt("idEquipo"))) {
                                         elementosLista.add(new Jugador().getNombreCompleto());
                                         ArrayAdapter adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
                                         listaJugadores.setAdapter(adaptador);
                                         pass.setText("");
                                         Toast.makeText(getActivity().getApplicationContext(), "Ahora eres un nuevo jugador de " + getArguments().getString("nombreEquipo"), Toast.LENGTH_SHORT).show();
                                     }else{
-                                        Toast.makeText(getActivity().getApplicationContext(),"Ya eres jugador de " + getArguments().getString("nombreEquipo"),Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity().getApplicationContext(),"Ya eres miembro de " + getArguments().getString("nombreEquipo"),Toast.LENGTH_SHORT).show();
                                     }
                                 } else {
                                     Toast.makeText(getActivity().getApplicationContext(), "Contraseña incorrecta", Toast.LENGTH_SHORT).show();

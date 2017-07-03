@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 
 public class MenuPrincipal extends AppCompatActivity implements View.OnClickListener{
 
-    ImageButton btnMenu;
+    ImageButton btnMenu,btnLogout;
     Button btnModificar, btnListarEquipos, btnCrearEquipo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +25,13 @@ public class MenuPrincipal extends AppCompatActivity implements View.OnClickList
         btnListarEquipos = (Button)findViewById(R.id.btnListarEquipos);
         btnCrearEquipo = (Button)findViewById(R.id.btnCreacionEquipos);
         btnMenu = (ImageButton)findViewById(R.id.btnMenu);
+        btnLogout = (ImageButton)findViewById(R.id.btnLogout);
 
         btnModificar.setOnClickListener(this);
         btnListarEquipos.setOnClickListener(this);
         btnCrearEquipo.setOnClickListener(this);
         btnMenu.setOnClickListener(this);
+        btnLogout.setOnClickListener(this);
     }
 
 
@@ -52,6 +54,10 @@ public class MenuPrincipal extends AppCompatActivity implements View.OnClickList
             case R.id.btnMenu:
                 DrawerLayout dl = (DrawerLayout)findViewById(R.id.drawer_Layout);
                 dl.openDrawer(Gravity.START);
+                break;
+            case R.id.btnLogout:
+                Intent i = new Intent(getApplicationContext(),Login.class);
+                startActivity(i);
                 break;
         }
 
