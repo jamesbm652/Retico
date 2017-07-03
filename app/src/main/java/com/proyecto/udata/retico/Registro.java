@@ -89,13 +89,13 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                 }
 
 
-                final String nombre = txtNombre.getText().toString().trim();
-                final String apellido1 = txtApellido1.getText().toString().trim();
-                final String apellido2 = txtApellido2.getText().toString().trim();
+                final String nombre = txtNombre.getText().toString();
+                final String apellido1 = txtApellido1.getText().toString();
+                final String apellido2 = txtApellido2.getText().toString();
                 final Date fechaNac = fecha;
-                final String correo = txtCorreo.getText().toString().trim();
-                final String pass = txtContrasena.getText().toString().trim();
-                final String tel = txtTelefono.getText().toString().trim();
+                final String correo = txtCorreo.getText().toString();
+                final String pass = txtContrasena.getText().toString();
+                final String tel = txtTelefono.getText().toString();
 
                 if(!nombre.equals("") && !apellido1.equals("") && !apellido2.equals("") && fecha != null && !correo.equals("") && !pass.equals("") && !tel.equals("")){
                     if (validarCorreo(correo)) {

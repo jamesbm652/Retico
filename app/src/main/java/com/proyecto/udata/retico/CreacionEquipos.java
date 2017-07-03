@@ -46,9 +46,9 @@ public class CreacionEquipos extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnCrearEquipo:
-                final String nombreEquipo = txtNombre.getText().toString().trim();
-                final String localizacion = txtLocalizacion.getText().toString().trim();
-                final String contrasena = txtContrasena.getText().toString().trim();
+                final String nombreEquipo = txtNombre.getText().toString();
+                final String localizacion = txtLocalizacion.getText().toString();
+                final String contrasena = txtContrasena.getText().toString();
 
                 if(!nombreEquipo.equals("") && !localizacion.equals("") && !contrasena.equals("")){
                     Thread tr = new Thread() {
