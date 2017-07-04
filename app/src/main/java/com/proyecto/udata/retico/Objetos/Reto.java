@@ -2,7 +2,9 @@ package com.proyecto.udata.retico.Objetos;
 
 import com.proyecto.udata.retico.Modelos.RetoModel;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by James on 3/7/2017.
@@ -77,4 +79,6 @@ public class Reto {
     public Boolean insertarReto(){
         return new RetoModel().insertarReto(this);
     }
+
+
 }

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.proyecto.udata.retico.SeguimientoRetos">
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/colorPrimary"
+        android:elevation="8dp"
+
+        >
+
+        <ImageButton
+            android:id="@+id/btnBackSpaceListaRetos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_keyboard_backspace_white_24dp"
+            android:layout_gravity="left"
+            android:clickable="true"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp">
+
+        <TextView
+            android:id="@+id/labMisEquipos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Equipo:"
+            android:textSize="15dp"
+            android:textColor="#212121"
+            />
+
+        <Spinner
+            android:id="@+id/cbxMisEquipos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:textAlignment="center"
+            android:text="Retos "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#212121"
+            android:textSize="25sp"
+            android:id="@+id/tituloReto"/>
+
+        <FrameLayout
+            android:id="@+id/fragment_Content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/listaRetos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foregroundTint="#757575"/>
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_add_white_24dp"
+                android:elevation="4dp"
+                app:fabSize="normal"
+                app:borderWidth="0dp"
+                android:clickable="true"
+                android:id="@+id/btnFABRetos"
+                />
+
+        </FrameLayout>
+
+    </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

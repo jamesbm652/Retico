@@ -1,7 +1,10 @@
 package com.proyecto.udata.retico.Modelos;
 
+import com.proyecto.udata.retico.Objetos.Equipo;
+import com.proyecto.udata.retico.Objetos.JugadorEquipo;
 import com.proyecto.udata.retico.Objetos.Reto;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -13,6 +16,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by James on 3/7/2017.
@@ -80,4 +86,139 @@ public class RetoModel {
 
         return ingreso;
     }
+
+    public ArrayList<Reto> obtenerRetosARCEquipos(int idEstado, int idEquipo){
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/listaRetos.php?idEquipo=" + idEstado +
+        " &idEstado=" + idEstado);
+        ArrayList<Reto> lista = new ArrayList<>();
+
+        if (cnxExitosa){
+            String jsonString = obtenerJsonEnString();
+            try {
+                JSONArray jsonArray = new JSONArray(jsonString);
+                for (int i = 0; i < jsonArray.length(); i++){
+                    JSONObject r = (JSONObject) jsonArray.get(i);
+
+                    Reto reto = new Reto();
+                    reto.setId(r.getInt("IdReto"));
+                    reto.setDescripcion(r.getString("Mensaje"));
+                    reto.setHora(r.getString("Hora"));
+
+                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                    Date fecha = formato.parse(r.getString("FechaReto"));
+                    reto.setFechaReto(fecha);
+
+                    Equipo eRetador = new Equipo();
+                    eRetador.setId(r.getInt("IdEquipoRetador"));
+                    eRetador.setNombre(r.getString("EquipoRetador"));
+
+                    Equipo eRetado = new Equipo();
+                    eRetador.setId(r.getInt("IdEquipoRetado"));
+                    eRetador.setNombre(r.getString("EquipoRetado"));
+
+                    reto.setEquipoRetador(eRetador);
+                    reto.setEquipoRetado(eRetado);
+
+                    lista.add(reto);
+                }
+                return lista;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return lista;
+        }else{
+            return lista;
+        }
+    }
+
+
+    public ArrayList<Reto> obtenerRetosPendientesEquipos(int idEstado, int idEquipo){
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/listaRetosPendientes.php?idEquipo=" + idEstado +
+                " &idEstado=" + idEstado);
+        ArrayList<Reto> lista = new ArrayList<>();
+
+        if (cnxExitosa){
+            String jsonString = obtenerJsonEnString();
+            try {
+                JSONArray jsonArray = new JSONArray(jsonString);
+                for (int i = 0; i < jsonArray.length(); i++){
+                    JSONObject r = (JSONObject) jsonArray.get(i);
+
+                    Reto reto = new Reto();
+                    reto.setId(r.getInt("IdReto"));
+                    reto.setDescripcion(r.getString("Mensaje"));
+                    reto.setHora(r.getString("Hora"));
+
+                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                    Date fecha = formato.parse(r.getString("FechaReto"));
+                    reto.setFechaReto(fecha);
+
+                    Equipo eRetador = new Equipo();
+                    eRetador.setId(r.getInt("IdEquipoRetador"));
+                    eRetador.setNombre(r.getString("EquipoRetador"));
+
+                    Equipo eRetado = new Equipo();
+                    eRetador.setId(r.getInt("IdEquipoRetado"));
+                    eRetador.setNombre(r.getString("EquipoRetado"));
+
+                    reto.setEquipoRetador(eRetador);
+                    reto.setEquipoRetado(eRetado);
+
+                    lista.add(reto);
+                }
+                return lista;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return lista;
+        }else{
+            return lista;
+        }
+    }
+
+
+    public ArrayList<Reto> obtenerRetosEnviadosEquipos(int idEstado, int idEquipo){
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/listaRetosEnviados.php?idEquipo=" + idEstado +
+                " &idEstado=" + idEstado);
+        ArrayList<Reto> lista = new ArrayList<>();
+
+        if (cnxExitosa){
+            String jsonString = obtenerJsonEnString();
+            try {
+                JSONArray jsonArray = new JSONArray(jsonString);
+                for (int i = 0; i < jsonArray.length(); i++){
+                    JSONObject r = (JSONObject) jsonArray.get(i);
+
+                    Reto reto = new Reto();
+                    reto.setId(r.getInt("IdReto"));
+                    reto.setDescripcion(r.getString("Mensaje"));
+                    reto.setHora(r.getString("Hora"));
+
+                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                    Date fecha = formato.parse(r.getString("FechaReto"));
+                    reto.setFechaReto(fecha);
+
+                    Equipo eRetador = new Equipo();
+                    eRetador.setId(r.getInt("IdEquipoRetador"));
+                    eRetador.setNombre(r.getString("EquipoRetador"));
+
+                    Equipo eRetado = new Equipo();
+                    eRetador.setId(r.getInt("IdEquipoRetado"));
+                    eRetador.setNombre(r.getString("EquipoRetado"));
+
+                    reto.setEquipoRetador(eRetador);
+                    reto.setEquipoRetado(eRetado);
+
+                    lista.add(reto);
+                }
+                return lista;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return lista;
+        }else{
+            return lista;
+        }
+    }
+
 }
