@@ -57,6 +57,7 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
                 listaStringRetos.clear();
                 titulo.setText("Retos ");
                 validarTipoReto(position,getIntent().getExtras().getString("tipoReto"));
+                //
             }
 
             @Override
