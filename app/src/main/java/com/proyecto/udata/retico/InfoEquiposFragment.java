@@ -98,15 +98,26 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                                 Toast.makeText(getActivity().getApplicationContext(), "Debe ingresar la contraseña", Toast.LENGTH_SHORT).show();
                             } else {
                                 if (getArguments().getString("contrasena").equals(pass.getText().toString())) {
-                                    if (new Equipo().unirJugador(new Jugador().getId(), getArguments().getInt("idEquipo"))) {
-                                        elementosLista.add(new Jugador().getNombreCompleto());
-                                        ArrayAdapter adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
-                                        listaJugadores.setAdapter(adaptador);
-                                        pass.setText("");
-                                        Toast.makeText(getActivity().getApplicationContext(), "Ahora eres un nuevo jugador de " + getArguments().getString("nombreEquipo"), Toast.LENGTH_SHORT).show();
-                                    }else{
-                                        Toast.makeText(getActivity().getApplicationContext(),"Ya eres miembro de " + getArguments().getString("nombreEquipo"),Toast.LENGTH_SHORT).show();
-                                    }
+                                    Thread tr = new Thread(){
+                                        @Override
+                                        public void run() {
+                                            if (new Equipo().unirJugador(new Jugador().getId(), getArguments().getInt("idEquipo"))) {
+                                                getActivity().runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        elementosLista.add(new Jugador().getNombreCompleto());
+                                                        ArrayAdapter adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
+                                                        listaJugadores.setAdapter(adaptador);
+                                                        pass.setText("");
+                                                        Toast.makeText(getActivity().getApplicationContext(), "Ahora eres un nuevo jugador de " + getArguments().getString("nombreEquipo"), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            }else{
+                                                Toast.makeText(getActivity().getApplicationContext(),"Ya eres miembro de " + getArguments().getString("nombreEquipo"),Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    };
+                                    tr.start();
                                 } else {
                                     Toast.makeText(getActivity().getApplicationContext(), "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
 

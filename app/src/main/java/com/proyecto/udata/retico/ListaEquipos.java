@@ -61,6 +61,7 @@ public class ListaEquipos extends AppCompatActivity implements ListadoEquiposFra
         tr.start();
     }
 
+    /*
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             switch (keyCode) {
@@ -72,7 +73,7 @@ public class ListaEquipos extends AppCompatActivity implements ListadoEquiposFra
         }
         return true;
     }
-
+*/
     private ArrayList<String> convertirListaDeObjectAString(){
         ArrayList<String> lista = new ArrayList<>();
         for (Equipo e: listaDeEquipos) {
