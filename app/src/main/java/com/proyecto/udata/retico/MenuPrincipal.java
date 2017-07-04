@@ -15,26 +15,40 @@ import android.widget.ImageButton;
 public class MenuPrincipal extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton btnMenu,btnLogout;
-    Button btnModificar, btnListarEquipos, btnCrearEquipo, btnRetosPendientes,btnRetosAceptados;
+    Button btnModificar, btnListarEquipos, btnCrearEquipo, btnRetosPendientes,btnRetosAceptados,btnRetosRechazados, btnRetosEnviados,btnRetosCancelados;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
 
+        inicializarComponentes();
+        setOnClickListener();
+
+    }
+
+    private void inicializarComponentes(){
         btnModificar = (Button)findViewById(R.id.btnModificar);
         btnListarEquipos = (Button)findViewById(R.id.btnListarEquipos);
         btnCrearEquipo = (Button)findViewById(R.id.btnCreacionEquipos);
         btnRetosPendientes = (Button)findViewById(R.id.btnRetosPendientes);
+        btnRetosEnviados = (Button)findViewById(R.id.btnRetosEnviados);
         btnRetosAceptados = (Button)findViewById(R.id.btnRetosAceptados);
+        btnRetosRechazados = (Button)findViewById(R.id.btnRetosRechazados);
+        btnRetosCancelados = (Button)findViewById(R.id.btnRetosCancelados);
         btnMenu = (ImageButton)findViewById(R.id.btnMenu);
         btnLogout = (ImageButton)findViewById(R.id.btnLogout);
+    }
 
+    private void setOnClickListener(){
         btnModificar.setOnClickListener(this);
         btnListarEquipos.setOnClickListener(this);
         btnCrearEquipo.setOnClickListener(this);
         btnRetosPendientes.setOnClickListener(this);
+        btnRetosEnviados.setOnClickListener(this);
         btnRetosAceptados.setOnClickListener(this);
+        btnRetosRechazados.setOnClickListener(this);
+        btnRetosCancelados.setOnClickListener(this);
         btnMenu.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
     }

@@ -88,7 +88,7 @@ public class RetoModel {
     }
 
     public ArrayList<Reto> obtenerRetosARCEquipos(int idEstado, int idEquipo){
-        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/listaRetos.php?idEquipo=" + idEstado +
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/listaRetos.php?idEquipo=" + idEquipo +
         " &idEstado=" + idEstado);
         ArrayList<Reto> lista = new ArrayList<>();
 
@@ -133,7 +133,7 @@ public class RetoModel {
 
 
     public ArrayList<Reto> obtenerRetosPendientesEquipos(int idEstado, int idEquipo){
-        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/listaRetosPendientes.php?idEquipo=" + idEstado +
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/listaRetosPendientes.php?idEquipo=" + idEquipo +
                 " &idEstado=" + idEstado);
         ArrayList<Reto> lista = new ArrayList<>();
 
@@ -178,7 +178,7 @@ public class RetoModel {
 
 
     public ArrayList<Reto> obtenerRetosEnviadosEquipos(int idEstado, int idEquipo){
-        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/listaRetosEnviados.php?idEquipo=" + idEstado +
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/listaRetosEnviados.php?idEquipo=" + idEquipo +
                 " &idEstado=" + idEstado);
         ArrayList<Reto> lista = new ArrayList<>();
 

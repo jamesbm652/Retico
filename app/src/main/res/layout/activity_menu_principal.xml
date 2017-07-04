@@ -47,6 +47,9 @@
 
         </android.support.v7.widget.Toolbar>
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 
@@ -194,6 +197,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Crear Equipo"
+                    />
+
+                <Button
+                    android:id="@+id/btnRetosPendientes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Retos pendientes"
+                    />
+
+                <Button
+                    android:id="@+id/btnRetosEnviados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Retos enviados"
+                    />
+                <Button
+                    android:id="@+id/btnRetosAceptados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Retos aceptados"
+                    />
+                <Button
+                    android:id="@+id/btnRetosRechazados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Retos rechazados"
+                    />
+                <Button
+                    android:id="@+id/btnRetosCancelados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Retos cancelados"
                     />
 
             </LinearLayout>

@@ -133,23 +133,23 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
         switch (tipo){
             case "Pendiente":
                 titulo.setText(titulo.getText() + "pendientes");
-                obtenerRetosPendientes(listaMisEquipos.get(posicion).getId(),1);
+                obtenerRetosPendientes(1,listaMisEquipos.get(posicion).getId());
                 break;
             case "Enviado":
                 titulo.setText(titulo.getText() + "enviados");
-                obtenerRetosEnviados(listaMisEquipos.get(posicion).getId(),1);
+                obtenerRetosEnviados(1,listaMisEquipos.get(posicion).getId());
                 break;
             case "Rechazado":
                 titulo.setText(titulo.getText() + "rechazados");
-                obtenerRetosARC(listaMisEquipos.get(posicion).getId(),2);
+                obtenerRetosARC(2,listaMisEquipos.get(posicion).getId());
                 break;
             case "Aceptado":
                 titulo.setText(titulo.getText() + "aceptados");
-                obtenerRetosARC(listaMisEquipos.get(posicion).getId(),3);
+                obtenerRetosARC(3,listaMisEquipos.get(posicion).getId());
                 break;
             case "Cancelado":
                 titulo.setText(titulo.getText() + "cancelados");
-                obtenerRetosARC(listaMisEquipos.get(posicion).getId(),4);
+                obtenerRetosARC(4,listaMisEquipos.get(posicion).getId());
                 break;
         }
     }
@@ -192,7 +192,7 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
         tr.start();
     }
 
-    private void obtenerRetosPendientes(final int idEquipo, final int idEstado){
+    private void obtenerRetosPendientes(final int idEstado, final int idEquipo){
         Thread tr = new Thread(){
             @Override
             public void run() {
