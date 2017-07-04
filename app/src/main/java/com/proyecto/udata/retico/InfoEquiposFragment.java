@@ -120,6 +120,7 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.btnRetar:
                 Intent ventRetarEquipo = new Intent(getActivity(), RetarEquipos.class);
+                ventRetarEquipo.putExtra("idEquipoSeleccionado", getArguments().getInt("idEquipo"));
                 startActivity(ventRetarEquipo);
                 break;
         }

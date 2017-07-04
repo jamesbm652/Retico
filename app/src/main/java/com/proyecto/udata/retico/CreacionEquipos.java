@@ -3,6 +3,7 @@ package com.proyecto.udata.retico;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +41,18 @@ public class CreacionEquipos extends AppCompatActivity implements View.OnClickLi
         txtEncargado = (EditText)findViewById(R.id.txtEcargadoEquipo);
         btnCrearEquipo = (Button)findViewById(R.id.btnCrearEquipo);
         btnBackSpaceCrearEquipos = (ImageButton)findViewById(R.id.btnBackSpaceCrearEquipos);
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    startActivity(new Intent(getApplicationContext(),MenuPrincipal.class));
+                    return true;
+            }
+
+        }
+        return true;
     }
 
     @Override

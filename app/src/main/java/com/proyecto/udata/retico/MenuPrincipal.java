@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,16 @@ public class MenuPrincipal extends AppCompatActivity implements View.OnClickList
         btnLogout.setOnClickListener(this);
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    return true;
+            }
+
+        }
+        return true;
+    }
 
     @Override
     public void onClick(View v) {

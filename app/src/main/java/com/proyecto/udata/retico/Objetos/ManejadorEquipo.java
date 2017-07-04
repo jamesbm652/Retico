@@ -29,4 +29,8 @@ public class ManejadorEquipo {
     public void cargarListaEquipos(){
         listaEquipos = new EquipoModel().obtenerListaEquipos();
     }
+
+    public void cargarMisEquipos(int idJugador){
+        listaEquipos = new EquipoModel().obtenerMisEquipos(idJugador);
+    }
 }

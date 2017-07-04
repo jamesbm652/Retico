@@ -1,9 +1,11 @@
 package com.proyecto.udata.retico;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 import com.proyecto.udata.retico.Objetos.Equipo;
 import com.proyecto.udata.retico.Objetos.JugadorEquipo;
@@ -57,6 +59,18 @@ public class ListaEquipos extends AppCompatActivity implements ListadoEquiposFra
             }
         };
         tr.start();
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    startActivity(new Intent(getApplicationContext(),MenuPrincipal.class));
+                    return true;
+            }
+
+        }
+        return true;
     }
 
     private ArrayList<String> convertirListaDeObjectAString(){

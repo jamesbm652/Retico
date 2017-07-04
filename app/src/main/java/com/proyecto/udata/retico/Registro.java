@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -134,6 +135,17 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                 break;
         }
 
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    startActivity(new Intent(getApplicationContext(),Login.class));
+                    return true;
+            }
+
+        }
+        return true;
     }
 
     public static boolean validarCorreo(String correo) {

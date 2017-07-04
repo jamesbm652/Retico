@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -48,6 +49,18 @@ public class ManejoJugadores extends AppCompatActivity implements View.OnClickLi
         txtContrasena = (TextView)findViewById(R.id.txtContrasena);
         btnModificar = (Button)findViewById(R.id.btnModificar);
         btnBackSpaceModificar = (ImageButton)findViewById(R.id.btnBackSpaceModificar);
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    startActivity(new Intent(getApplicationContext(),MenuPrincipal.class));
+                    return true;
+            }
+
+        }
+        return true;
     }
 
     public void setValores(){

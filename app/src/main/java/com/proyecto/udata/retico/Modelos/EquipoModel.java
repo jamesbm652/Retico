@@ -159,4 +159,31 @@ public class EquipoModel {
         return unir;
     }
 
+    public ArrayList<Equipo> obtenerMisEquipos(int idJugador){
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/miListaEquipos.php?idJugador="+idJugador);
+        ArrayList<Equipo> lista = new ArrayList<>();
+
+        if (cnxExitosa){
+            String jsonString = obtenerJsonEnString();
+            try {
+                JSONArray jsonArray = new JSONArray(jsonString);
+                for (int i = 0; i < jsonArray.length(); i++){
+                    JSONObject j = (JSONObject) jsonArray.get(i);
+
+                    Equipo e = new Equipo();
+                    e.setId(j.getInt("IdEquipo"));
+                    e.setNombre(j.getString("NombreEquipo"));
+
+                    lista.add(e);
+                }
+                return lista;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return lista;
+        }else{
+            return lista;
+        }
+    }
+
 }

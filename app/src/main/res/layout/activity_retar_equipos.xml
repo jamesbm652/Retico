@@ -7,4 +7,160 @@
     android:orientation="vertical"
     tools:context="com.proyecto.udata.retico.RetarEquipos">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+
+        android:background="@color/colorPrimary"
+        android:elevation="8dp"
+
+        >
+        <ImageButton
+            android:id="@+id/btnBackSpace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_keyboard_backspace_white_24dp"
+            android:layout_gravity="left"
+            android:clickable="true"
+            />
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="15dp"
+        android:scrollbars="vertical"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Complete los siguientes datos:"
+            android:textSize="20dp"
+            android:textColor="#212121"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp">
+
+            <TextView
+                android:id="@+id/labFechaReto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/txtFechaReto"
+                android:text="Fecha del reto:"
+                android:textSize="15dp"
+                android:textColor="#212121"
+                />
+
+            <EditText
+                android:id="@+id/txtFechaReto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/labFechaReto"
+                android:inputType="text"
+                android:backgroundTint="#757575"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp">
+
+            <TextView
+                android:id="@+id/labHoraReto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/txtHoraReto"
+                android:text="Hora del reto:"
+                android:textSize="15dp"
+                android:textColor="#212121"
+                />
+
+            <EditText
+                android:id="@+id/txtHoraReto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/labHoraReto"
+                android:inputType="text"
+                android:backgroundTint="#757575"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp">
+
+            <TextView
+                android:id="@+id/labMisEquipos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Equipo retador:"
+                android:textSize="15dp"
+                android:textColor="#212121"
+                />
+
+            <Spinner
+                android:id="@+id/cbxMisEquipos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp">
+
+            <TextView
+                android:id="@+id/labMensajeReto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mensaje:"
+                android:textSize="15dp"
+                android:textColor="#212121"
+                />
+
+            <EditText
+                android:id="@+id/txtMensajeReto"
+                android:inputType="textMultiLine"
+                android:lines="8"
+                android:gravity="top|left"
+                android:maxLines="10"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:scrollbars="vertical"
+            />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnRetar"
+            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:text="Retar"
+            />
+
+    </LinearLayout>
+
+
 </LinearLayout>
