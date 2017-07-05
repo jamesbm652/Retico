@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class RetarEquipos extends AppCompatActivity implements View.OnClickListe
     ArrayList<Equipo> listaMisEquipos;
     EditText txtFechaReto, txtHoraReto, txtMensajeReto;
     Button btnRetar;
+    ImageButton btnAtrasRetarEquipos;
     Spinner cbxMisEquipos;
     int mes, ano, dia, min, hora;
     Calendar cal;
@@ -86,6 +88,7 @@ public class RetarEquipos extends AppCompatActivity implements View.OnClickListe
         txtHoraReto = (EditText)findViewById(R.id.txtHoraReto);
         txtMensajeReto = (EditText)findViewById(R.id.txtMensajeReto);
         btnRetar = (Button)findViewById(R.id.btnRetar);
+        btnAtrasRetarEquipos = (ImageButton)findViewById(R.id.btnBackSpace);
         cbxMisEquipos = (Spinner)findViewById(R.id.cbxMisEquipos);
     }
 
@@ -132,39 +135,48 @@ public class RetarEquipos extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Date fecha = null;
-        try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            fecha = format.parse(txtFechaReto.getText().toString());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        final Date fechaReto = fecha;
-        final Equipo eRetador = new Equipo();
-        final Equipo eRetado = new Equipo();
-        eRetador.setId(listaMisEquipos.get(cbxMisEquipos.getSelectedItemPosition()).getId());
-        Bundle extra = getIntent().getExtras();
-        eRetado.setId(extra.getInt("idEquipoSeleccionado"));
+        switch (v.getId()) {
+            case R.id.btnRetar:
+                Date fecha = null;
+                try {
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                    fecha = format.parse(txtFechaReto.getText().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                final Date fechaReto = fecha;
+                final Equipo eRetador = new Equipo();
+                final Equipo eRetado = new Equipo();
+                eRetador.setId(listaMisEquipos.get(cbxMisEquipos.getSelectedItemPosition()).getId());
+                Bundle extra = getIntent().getExtras();
+                eRetado.setId(extra.getInt("idEquipoSeleccionado"));
 
-        Thread tr = new Thread(){
-            @Override
-            public void run() {
-                final Boolean retoCreado = new Reto(fechaReto, txtHoraReto.getText().toString(), eRetador, eRetado, txtMensajeReto.getText().toString()).insertarReto();
-                runOnUiThread(new Runnable() {
+                Thread tr = new Thread() {
                     @Override
                     public void run() {
-                        if (retoCreado) {
-                            Toast.makeText(getApplicationContext(), "Retor creado correctamente", Toast.LENGTH_SHORT).show();
-                            txtFechaReto.setText("");
-                            txtHoraReto.setText("");
-                            txtMensajeReto.setText("");
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Error al crear equipo", Toast.LENGTH_SHORT).show();
-                        }
+                        final Boolean retoCreado = new Reto(fechaReto, txtHoraReto.getText().toString(), eRetador, eRetado, txtMensajeReto.getText().toString()).insertarReto();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (retoCreado) {
+                                    Toast.makeText(getApplicationContext(), "Retor creado correctamente", Toast.LENGTH_SHORT).show();
+                                    txtFechaReto.setText("");
+                                    txtHoraReto.setText("");
+                                    txtMensajeReto.setText("");
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Error al crear equipo", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     }
-                });
-            }
-        };
-        tr.start();
+                };
+                tr.start();
+
+                break;
+
+            case R.id.btnBackSpace:
+                //ver donde devolverse
+                break;
+        }
     }
 }
