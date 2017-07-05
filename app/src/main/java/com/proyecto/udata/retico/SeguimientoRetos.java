@@ -104,7 +104,7 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
 
     private void cargarListaRetosAListView(){
 
-        ArrayAdapter adaptador;
+        final ArrayAdapter adaptador;
 
         for (Reto e: listaRetos) {
             listaStringRetos.add(e.getEquipoRetador().getNombre() + " vs " + e.getEquipoRetado().getNombre());
@@ -151,9 +151,10 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
                             public void onClick(View v) {
                                 cambiarEstadoReto(listaRetos.get(position).getId(),3);
                                 listaRetos.remove(listaRetos.get(position));
-                                listaStringRetos.remove(listaRetos.get(position));
 
-                                //aqui va ir lo de refrescar la lista
+                                adaptador.remove(listaStringRetos.remove(position));
+                                adaptador.notifyDataSetChanged();
+                                listViewRetos.setAdapter(adaptador);
                             }
                         });
 
@@ -161,9 +162,14 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
                             @Override
                             public void onClick(View v) {
                                 cambiarEstadoReto(listaRetos.get(position).getId(),2);
+                                listaRetos.remove(listaRetos.get(position));
+
+                                adaptador.remove(listaStringRetos.remove(position));
+                                adaptador.notifyDataSetChanged();
+                                listViewRetos.setAdapter(adaptador);
                             }
                         });
-                    }else if(getIntent().getExtras().getString("tipoReto").equals("Aceptados")){
+                    }else if(getIntent().getExtras().getString("tipoReto").equals("Aceptado")){
                         btnAceptarReto.setVisibility(View.INVISIBLE);
                         btnRechazarReto.setVisibility(View.INVISIBLE);
                         btnCancelarReto.setVisibility(View.VISIBLE);
@@ -172,6 +178,11 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
                             @Override
                             public void onClick(View v) {
                                 cambiarEstadoReto(listaRetos.get(position).getId(),4);
+                                listaRetos.remove(listaRetos.get(position));
+
+                                adaptador.remove(listaStringRetos.remove(position));
+                                adaptador.notifyDataSetChanged();
+                                listViewRetos.setAdapter(adaptador);
                             }
                         });
 

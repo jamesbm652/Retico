@@ -88,7 +88,7 @@ public class RetoModel {
     }
 
     public ArrayList<Reto> obtenerRetosARCEquipos(int idEstado, int idEquipo){
-        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/listaRetos.php?idEquipo=" + idEquipo +
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/listaRetosARC.php?idEquipo=" + idEquipo +
         " &idEstado=" + idEstado);
         ArrayList<Reto> lista = new ArrayList<>();
 
