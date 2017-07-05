@@ -13,13 +13,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.proyecto.udata.retico.Objetos.Equipo;
 import com.proyecto.udata.retico.Objetos.Jugador;
+import com.proyecto.udata.retico.Objetos.ManejadorEquipo;
 
 import java.util.ArrayList;
 
@@ -62,8 +62,6 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
         elementosLista = getArguments().getStringArrayList("listaJugadores");
         adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
         listaJugadores.setAdapter(adaptador);
-
-        definirAlturaListaJugadores(listaJugadores);
 
         return view;
     }
@@ -110,11 +108,9 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                                                     @Override
                                                     public void run() {
                                                         elementosLista.add(new Jugador().getNombreCompleto());
-
                                                         adaptador.notifyDataSetChanged();
                                                         //ArrayAdapter adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
                                                         listaJugadores.setAdapter(adaptador);
-                                                        definirAlturaListaJugadores(listaJugadores);
                                                         pass.setText("");
                                                         Toast.makeText(getActivity().getApplicationContext(), "Ahora eres un nuevo jugador de " + getArguments().getString("nombreEquipo"), Toast.LENGTH_SHORT).show();
                                                     }
@@ -137,13 +133,50 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                 }
                 break;
             case R.id.btnRetar:
-                Intent ventRetarEquipo = new Intent(getActivity(), RetarEquipos.class);
-                ventRetarEquipo.putExtra("idEquipoSeleccionado", getArguments().getInt("idEquipo"));
-                startActivity(ventRetarEquipo);
+                Thread th = new Thread(){
+                    @Override
+                    public void run() {
+                        final ManejadorEquipo manejadorMisEquipos = new ManejadorEquipo();
+                        manejadorMisEquipos.cargarMisEquipos(new Jugador().getId());
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(!manejadorMisEquipos.getListaEquipos().isEmpty()){
+                                    Intent ventRetarEquipo = new Intent(getActivity(), RetarEquipos.class);
+                                    ventRetarEquipo.putExtra("idEquipoSeleccionado", getArguments().getInt("idEquipo"));
+                                    ventRetarEquipo.putExtra("listaNombresMisEquipos",convertirNombresEquiposAString(manejadorMisEquipos.getListaEquipos()));
+                                    ventRetarEquipo.putExtra("listaIdMisEquipos",convertirIdEquiposAString(manejadorMisEquipos.getListaEquipos()));
+                                    startActivity(ventRetarEquipo);
+                                }else{
+                                    Toast.makeText(getActivity().getApplicationContext(),"Usted no se encuentra en ningún equipo",Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        });
+                    }
+                };
+
                 break;
         }
     }
 
+    private ArrayList<String> convertirNombresEquiposAString(ArrayList<Equipo> listaEquipo){
+        ArrayList<String> listaNombresEquipos = new ArrayList<>();
+        for (Equipo e: listaEquipo) {
+            listaNombresEquipos.add(e.getNombre());
+        }
+        return listaNombresEquipos;
+    }
+
+    private ArrayList<String> convertirIdEquiposAString(ArrayList<Equipo> listaEquipo){
+        ArrayList<String> listaIdEquipos = new ArrayList<>();
+        for (Equipo e: listaEquipo) {
+            listaIdEquipos.add(e.getId() + "");
+        }
+        return listaIdEquipos;
+
+    }
 
     public Boolean validarUnionAlEquipo(String nombre){
         for (String n: elementosLista) {
@@ -154,20 +187,6 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
         return true;
     }
 
-    public static void definirAlturaListaJugadores(ListView listaJugadores) {
-        ListAdapter listAdapter = listaJugadores.getAdapter();
 
-        int totalHeight = 0;
-        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listaJugadores.getWidth(), View.MeasureSpec.AT_MOST);
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            View listItem = listAdapter.getView(i, null, listaJugadores);
-            listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-            totalHeight += listItem.getMeasuredHeight();
-        }
-        totalHeight = totalHeight/6;
-        ViewGroup.LayoutParams params = listaJugadores.getLayoutParams();
-        params.height = totalHeight + (listaJugadores.getDividerHeight() * (listAdapter.getCount() - 1));
-        listaJugadores.setLayoutParams(params);
-        listaJugadores.requestLayout();
-    }
+
 }
