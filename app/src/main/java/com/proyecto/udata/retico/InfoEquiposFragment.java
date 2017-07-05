@@ -150,7 +150,7 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                                     ventRetarEquipo.putExtra("listaIdMisEquipos",convertirIdEquiposAString(manejadorMisEquipos.getListaEquipos()));
                                     startActivity(ventRetarEquipo);
                                 }else{
-                                    Toast.makeText(getActivity().getApplicationContext(),"Usted no se encuentra en ningún equipo",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity().getApplicationContext(),"No eres miembro de ningún equipo",Toast.LENGTH_SHORT).show();
                                 }
 
                             }

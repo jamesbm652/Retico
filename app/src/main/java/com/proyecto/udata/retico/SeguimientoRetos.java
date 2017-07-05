@@ -31,7 +31,6 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
     ImageButton btnAtras;
     TextView titulo;
     ListView listViewRetos;
-    FloatingActionButton FABRetos;
 
     Spinner cbxMisEquipos;
     ArrayList<Reto> listaRetos = new ArrayList<>();
@@ -48,8 +47,6 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
         listViewRetos = (ListView)findViewById(R.id.listaRetos);
         btnAtras = (ImageButton)findViewById(R.id.btnBackSpaceListaRetos);
         btnAtras.setOnClickListener(this);
-        FABRetos = (FloatingActionButton)findViewById(R.id.btnFABRetos);
-        FABRetos.setOnClickListener(this);
         cbxMisEquipos = (Spinner)findViewById(R.id.cbxMisEquipos);
 
         cargarListaMisEquipos();
@@ -71,7 +68,6 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
         });
 
     }
-
 
     private void cargarListaMisEquipos(){
         Thread hiloCargarLista = new Thread(){
