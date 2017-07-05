@@ -28,7 +28,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class RetarEquipos extends AppCompatActivity implements View.OnClickListener{
-    ArrayList<Equipo> listaMisEquipos;
+    ArrayList<Equipo> listaMisEquipos = new ArrayList<>();
     EditText txtFechaReto, txtHoraReto, txtMensajeReto;
     Button btnRetar;
     ImageButton btnAtrasRetarEquipos;
@@ -43,6 +43,7 @@ public class RetarEquipos extends AppCompatActivity implements View.OnClickListe
         inicializarComponentes();
         cargarListaMisEquipos();
         btnRetar.setOnClickListener(this);
+        btnAtrasRetarEquipos.setOnClickListener(this);
 
         //DatePicker para solicitar la fecha
         txtFechaReto.setOnClickListener(new View.OnClickListener() {
@@ -105,32 +106,20 @@ public class RetarEquipos extends AppCompatActivity implements View.OnClickListe
     }
 
     private void cargarListaMisEquipos(){
-        Thread hiloCargarLista = new Thread(){
-            @Override
-            public void run() {
-                ManejadorEquipo manejadorMisEquipos = new ManejadorEquipo();
-                manejadorMisEquipos.cargarMisEquipos(new Jugador().getId());
-                listaMisEquipos = manejadorMisEquipos.getListaEquipos();
-                final ArrayList<String> listaMisEquiposString = convertirListaMisEquiposAString(listaMisEquipos);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, listaMisEquiposString);
-                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        cbxMisEquipos.setAdapter(dataAdapter);
-                    }
-                });
-            }
-        };
-        hiloCargarLista.start();
-    }
+        Bundle bundle = getIntent().getExtras();
+        ArrayList<String> listaNombresMisEquipos = bundle.getStringArrayList("listaNombresMisEquipos");
+        ArrayList<Integer> listaIdMisEquipos = bundle.getIntegerArrayList("listaIdMisEquipos");
 
-    private ArrayList<String> convertirListaMisEquiposAString(ArrayList<Equipo> listaEquipos){
-        ArrayList<String> listaStringMisEquipos = new ArrayList<>();
-        for (Equipo e: listaEquipos) {
-            listaStringMisEquipos.add(e.getNombre());
+        for(int i = 0; i<listaIdMisEquipos.size(); i++){
+            Equipo equipo = new Equipo();
+            equipo.setId(listaIdMisEquipos.get(i));
+            equipo.setNombre(listaNombresMisEquipos.get(i));
+            listaMisEquipos.add(equipo);
         }
-        return listaStringMisEquipos;
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, listaNombresMisEquipos);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cbxMisEquipos.setAdapter(dataAdapter);
     }
 
     @Override
@@ -184,7 +173,7 @@ public class RetarEquipos extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnBackSpace:
-                //ver donde devolverse
+                startActivity(new Intent(v.getContext(),ListaEquipos.class));
                 break;
         }
     }

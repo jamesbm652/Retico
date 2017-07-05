@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +64,8 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
         elementosLista = getArguments().getStringArrayList("listaJugadores");
         adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
         listaJugadores.setAdapter(adaptador);
+
+        definirAlturaListaJugadores(listaJugadores);
 
         return view;
     }
@@ -113,6 +117,8 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                                                         listaJugadores.setAdapter(adaptador);
                                                         pass.setText("");
                                                         Toast.makeText(getActivity().getApplicationContext(), "Ahora eres un nuevo jugador de " + getArguments().getString("nombreEquipo"), Toast.LENGTH_SHORT).show();
+                                                        Intent ventListaEquipos = new Intent(getActivity().getApplicationContext(), ListaEquipos.class);
+                                                        startActivity(ventListaEquipos);
                                                     }
                                                 });
                                             }else{
@@ -137,13 +143,14 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                     @Override
                     public void run() {
                         final ManejadorEquipo manejadorMisEquipos = new ManejadorEquipo();
+                        final ArrayList<Equipo> listaMisEquipos;
                         manejadorMisEquipos.cargarMisEquipos(new Jugador().getId());
-
+                        listaMisEquipos = manejadorMisEquipos.getListaEquipos();
 
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if(!manejadorMisEquipos.getListaEquipos().isEmpty()){
+                                if(listaMisEquipos != null && !listaMisEquipos.isEmpty()){
                                     Intent ventRetarEquipo = new Intent(getActivity(), RetarEquipos.class);
                                     ventRetarEquipo.putExtra("idEquipoSeleccionado", getArguments().getInt("idEquipo"));
                                     ventRetarEquipo.putExtra("listaNombresMisEquipos",convertirNombresEquiposAString(manejadorMisEquipos.getListaEquipos()));
@@ -155,8 +162,6 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
 
                             }
                         });
-
-
                     }
                 };
                 th.start();
@@ -172,12 +177,13 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
         return listaNombresEquipos;
     }
 
-    private ArrayList<String> convertirIdEquiposAString(ArrayList<Equipo> listaEquipo){
-        ArrayList<String> listaIdEquipos = new ArrayList<>();
+    private ArrayList<Integer> convertirIdEquiposAString(ArrayList<Equipo> listaEquipo){
+        ArrayList<Integer> listaIdEquipos = new ArrayList<>();
         for (Equipo e: listaEquipo) {
-            listaIdEquipos.add(e.getId() + "");
+            listaIdEquipos.add(e.getId());
         }
         return listaIdEquipos;
+
     }
 
     public Boolean validarUnionAlEquipo(String nombre){
@@ -185,6 +191,35 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
             if(n.equals(nombre)){
                 return false;
             }
+        }
+        return true;
+    }
+
+    public static void definirAlturaListaJugadores(ListView listaJugadores) {
+        ListAdapter listAdapter = listaJugadores.getAdapter();
+
+        int totalHeight = 0;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listaJugadores.getWidth(), View.MeasureSpec.AT_MOST);
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listaJugadores);
+            listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+        totalHeight = totalHeight/6;
+        ViewGroup.LayoutParams params = listaJugadores.getLayoutParams();
+        params.height = totalHeight + (listaJugadores.getDividerHeight() * (listAdapter.getCount() - 1));
+        listaJugadores.setLayoutParams(params);
+        listaJugadores.requestLayout();
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    startActivity(new Intent(getActivity(),MenuPrincipal.class));
+                    return true;
+            }
+
         }
         return true;
     }

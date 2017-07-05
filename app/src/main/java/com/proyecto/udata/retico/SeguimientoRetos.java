@@ -165,7 +165,7 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
                                 listViewRetos.setAdapter(adaptador);
                             }
                         });
-                    }else if(getIntent().getExtras().getString("tipoReto").equals("Aceptado")){
+                    }else if(getIntent().getExtras().getString("tipoReto").equals("Aceptado") || getIntent().getExtras().getString("tipoReto").equals("Enviado")){
                         btnAceptarReto.setVisibility(View.INVISIBLE);
                         btnRechazarReto.setVisibility(View.INVISIBLE);
                         btnCancelarReto.setVisibility(View.VISIBLE);
