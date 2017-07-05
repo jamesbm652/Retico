@@ -28,7 +28,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class RetarEquipos extends AppCompatActivity implements View.OnClickListener{
-    ArrayList<Equipo> listaMisEquipos;
+    ArrayList<Equipo> listaMisEquipos = new ArrayList<>();
     EditText txtFechaReto, txtHoraReto, txtMensajeReto;
     Button btnRetar;
     ImageButton btnAtrasRetarEquipos;

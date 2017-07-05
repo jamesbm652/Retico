@@ -163,7 +163,7 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                         });
                     }
                 };
-
+                th.start();
                 break;
         }
     }
@@ -176,10 +176,10 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
         return listaNombresEquipos;
     }
 
-    private ArrayList<String> convertirIdEquiposAString(ArrayList<Equipo> listaEquipo){
-        ArrayList<String> listaIdEquipos = new ArrayList<>();
+    private ArrayList<Integer> convertirIdEquiposAString(ArrayList<Equipo> listaEquipo){
+        ArrayList<Integer> listaIdEquipos = new ArrayList<>();
         for (Equipo e: listaEquipo) {
-            listaIdEquipos.add(e.getId() + "");
+            listaIdEquipos.add(e.getId());
         }
         return listaIdEquipos;
 
