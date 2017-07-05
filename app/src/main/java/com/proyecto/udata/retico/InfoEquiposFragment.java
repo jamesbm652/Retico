@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.proyecto.udata.retico.Objetos.Equipo;
 import com.proyecto.udata.retico.Objetos.Jugador;
+import com.proyecto.udata.retico.Objetos.ManejadorEquipo;
 
 import java.util.ArrayList;
 
@@ -132,13 +133,50 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                 }
                 break;
             case R.id.btnRetar:
-                Intent ventRetarEquipo = new Intent(getActivity(), RetarEquipos.class);
-                ventRetarEquipo.putExtra("idEquipoSeleccionado", getArguments().getInt("idEquipo"));
-                startActivity(ventRetarEquipo);
+                Thread th = new Thread(){
+                    @Override
+                    public void run() {
+                        final ManejadorEquipo manejadorMisEquipos = new ManejadorEquipo();
+                        manejadorMisEquipos.cargarMisEquipos(new Jugador().getId());
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(!manejadorMisEquipos.getListaEquipos().isEmpty()){
+                                    Intent ventRetarEquipo = new Intent(getActivity(), RetarEquipos.class);
+                                    ventRetarEquipo.putExtra("idEquipoSeleccionado", getArguments().getInt("idEquipo"));
+                                    ventRetarEquipo.putExtra("listaNombresMisEquipos",convertirNombresEquiposAString(manejadorMisEquipos.getListaEquipos()));
+                                    ventRetarEquipo.putExtra("listaIdMisEquipos",convertirIdEquiposAString(manejadorMisEquipos.getListaEquipos()));
+                                    startActivity(ventRetarEquipo);
+                                }else{
+                                    Toast.makeText(getActivity().getApplicationContext(),"Usted no se encuentra en ningún equipo",Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        });
+                    }
+                };
+
                 break;
         }
     }
 
+    private ArrayList<String> convertirNombresEquiposAString(ArrayList<Equipo> listaEquipo){
+        ArrayList<String> listaNombresEquipos = new ArrayList<>();
+        for (Equipo e: listaEquipo) {
+            listaNombresEquipos.add(e.getNombre());
+        }
+        return listaNombresEquipos;
+    }
+
+    private ArrayList<String> convertirIdEquiposAString(ArrayList<Equipo> listaEquipo){
+        ArrayList<String> listaIdEquipos = new ArrayList<>();
+        for (Equipo e: listaEquipo) {
+            listaIdEquipos.add(e.getId() + "");
+        }
+        return listaIdEquipos;
+
+    }
 
     public Boolean validarUnionAlEquipo(String nombre){
         for (String n: elementosLista) {
@@ -148,4 +186,7 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
         }
         return true;
     }
+
+
+
 }
