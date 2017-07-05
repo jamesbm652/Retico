@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +63,8 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
         adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
         listaJugadores.setAdapter(adaptador);
 
+        definirAlturaListaJugadores(listaJugadores);
+
         return view;
     }
 
@@ -107,9 +110,11 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                                                     @Override
                                                     public void run() {
                                                         elementosLista.add(new Jugador().getNombreCompleto());
+
                                                         adaptador.notifyDataSetChanged();
                                                         //ArrayAdapter adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
                                                         listaJugadores.setAdapter(adaptador);
+                                                        definirAlturaListaJugadores(listaJugadores);
                                                         pass.setText("");
                                                         Toast.makeText(getActivity().getApplicationContext(), "Ahora eres un nuevo jugador de " + getArguments().getString("nombreEquipo"), Toast.LENGTH_SHORT).show();
                                                     }
@@ -147,5 +152,22 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
             }
         }
         return true;
+    }
+
+    public static void definirAlturaListaJugadores(ListView listaJugadores) {
+        ListAdapter listAdapter = listaJugadores.getAdapter();
+
+        int totalHeight = 0;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listaJugadores.getWidth(), View.MeasureSpec.AT_MOST);
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listaJugadores);
+            listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+        totalHeight = totalHeight/6;
+        ViewGroup.LayoutParams params = listaJugadores.getLayoutParams();
+        params.height = totalHeight + (listaJugadores.getDividerHeight() * (listAdapter.getCount() - 1));
+        listaJugadores.setLayoutParams(params);
+        listaJugadores.requestLayout();
     }
 }
