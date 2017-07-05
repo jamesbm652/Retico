@@ -57,6 +57,7 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
                 listaStringRetos.clear();
                 titulo.setText("Retos ");
                 validarTipoReto(position,getIntent().getExtras().getString("tipoReto"));
+
                 //
             }
 
@@ -99,12 +100,11 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
     }
 
     private void cargarListaRetosAListView(){
-        //listaRetos.clear();
-        //listaStringRetos.clear();
+
         ArrayAdapter adaptador;
 
         for (Reto e: listaRetos) {
-            listaStringRetos.add(e.getFechaReto() + "");
+            listaStringRetos.add(e.getEquipoRetador().getNombre() + " vs " + e.getEquipoRetado().getNombre());
         }
         if(listaStringRetos.isEmpty()){
             listaStringRetos.add("No tiene retos");

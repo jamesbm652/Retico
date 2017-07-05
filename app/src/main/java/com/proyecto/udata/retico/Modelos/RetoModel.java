@@ -113,8 +113,8 @@ public class RetoModel {
                     eRetador.setNombre(r.getString("EquipoRetador"));
 
                     Equipo eRetado = new Equipo();
-                    eRetador.setId(r.getInt("IdEquipoRetado"));
-                    eRetador.setNombre(r.getString("EquipoRetado"));
+                    eRetado.setId(r.getInt("IdEquipoRetado"));
+                    eRetado.setNombre(r.getString("EquipoRetado"));
 
                     reto.setEquipoRetador(eRetador);
                     reto.setEquipoRetado(eRetado);
@@ -158,8 +158,8 @@ public class RetoModel {
                     eRetador.setNombre(r.getString("EquipoRetador"));
 
                     Equipo eRetado = new Equipo();
-                    eRetador.setId(r.getInt("IdEquipoRetado"));
-                    eRetador.setNombre(r.getString("EquipoRetado"));
+                    eRetado.setId(r.getInt("IdEquipoRetado"));
+                    eRetado.setNombre(r.getString("EquipoRetado"));
 
                     reto.setEquipoRetador(eRetador);
                     reto.setEquipoRetado(eRetado);
@@ -203,8 +203,8 @@ public class RetoModel {
                     eRetador.setNombre(r.getString("EquipoRetador"));
 
                     Equipo eRetado = new Equipo();
-                    eRetador.setId(r.getInt("IdEquipoRetado"));
-                    eRetador.setNombre(r.getString("EquipoRetado"));
+                    eRetado.setId(r.getInt("IdEquipoRetado"));
+                    eRetado.setNombre(r.getString("EquipoRetado"));
 
                     reto.setEquipoRetador(eRetador);
                     reto.setEquipoRetado(eRetado);
