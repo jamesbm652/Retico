@@ -34,6 +34,7 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
     ImageButton btnBackSpaceMostrarEquipos;
     Button btnUnirse, btnRetar;
     View view;
+    ArrayAdapter adaptador;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
         txtContacto.setText(getArguments().getString("contacto"));
 
         elementosLista = getArguments().getStringArrayList("listaJugadores");
-        ArrayAdapter adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
+        adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
         listaJugadores.setAdapter(adaptador);
 
         return view;
@@ -106,7 +107,8 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                                                     @Override
                                                     public void run() {
                                                         elementosLista.add(new Jugador().getNombreCompleto());
-                                                        ArrayAdapter adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
+                                                        adaptador.notifyDataSetChanged();
+                                                        //ArrayAdapter adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, elementosLista);
                                                         listaJugadores.setAdapter(adaptador);
                                                         pass.setText("");
                                                         Toast.makeText(getActivity().getApplicationContext(), "Ahora eres un nuevo jugador de " + getArguments().getString("nombreEquipo"), Toast.LENGTH_SHORT).show();
