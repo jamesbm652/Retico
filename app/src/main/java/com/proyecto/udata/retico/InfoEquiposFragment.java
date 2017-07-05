@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -209,6 +210,18 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
         params.height = totalHeight + (listaJugadores.getDividerHeight() * (listAdapter.getCount() - 1));
         listaJugadores.setLayoutParams(params);
         listaJugadores.requestLayout();
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    startActivity(new Intent(getActivity(),MenuPrincipal.class));
+                    return true;
+            }
+
+        }
+        return true;
     }
 
 }
