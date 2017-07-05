@@ -139,6 +139,7 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
                         final ManejadorEquipo manejadorMisEquipos = new ManejadorEquipo();
                         manejadorMisEquipos.cargarMisEquipos(new Jugador().getId());
 
+
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -154,9 +155,11 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
 
                             }
                         });
+
+
                     }
                 };
-
+                th.start();
                 break;
         }
     }
@@ -175,7 +178,6 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
             listaIdEquipos.add(e.getId() + "");
         }
         return listaIdEquipos;
-
     }
 
     public Boolean validarUnionAlEquipo(String nombre){
@@ -186,7 +188,5 @@ public class InfoEquiposFragment extends Fragment implements View.OnClickListene
         }
         return true;
     }
-
-
 
 }
