@@ -145,33 +145,42 @@ public class RetarEquipos extends AppCompatActivity implements View.OnClickListe
                     e.printStackTrace();
                 }
                 final Date fechaReto = fecha;
+                final String horaReto = txtHoraReto.getText().toString();
+                final String mensaje = txtMensajeReto.getText().toString();
                 final Equipo eRetador = new Equipo();
                 final Equipo eRetado = new Equipo();
                 eRetador.setId(listaMisEquipos.get(cbxMisEquipos.getSelectedItemPosition()).getId());
                 Bundle extra = getIntent().getExtras();
                 eRetado.setId(extra.getInt("idEquipoSeleccionado"));
 
-                Thread tr = new Thread() {
-                    @Override
-                    public void run() {
-                        final Boolean retoCreado = new Reto(fechaReto, txtHoraReto.getText().toString(), eRetador, eRetado, txtMensajeReto.getText().toString()).insertarReto();
-                        runOnUiThread(new Runnable() {
+                if(fechaReto == null || horaReto.equals("") || mensaje.equals("")){
+                    Toast.makeText(getApplicationContext(), "Debes completar todos los campos", Toast.LENGTH_SHORT).show();
+                }else{
+                    if(eRetado.getId() == eRetador.getId()){
+                        Toast.makeText(getApplicationContext(), "No puedes retar a tu mismo equipo", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Thread tr = new Thread() {
                             @Override
                             public void run() {
-                                if (retoCreado) {
-                                    Toast.makeText(getApplicationContext(), "Retor creado correctamente", Toast.LENGTH_SHORT).show();
-                                    txtFechaReto.setText("");
-                                    txtHoraReto.setText("");
-                                    txtMensajeReto.setText("");
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Error al crear equipo", Toast.LENGTH_SHORT).show();
-                                }
+                                final Boolean retoCreado = new Reto(fechaReto, horaReto, eRetador, eRetado, mensaje).insertarReto();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (retoCreado) {
+                                            Toast.makeText(getApplicationContext(), "Retor creado correctamente", Toast.LENGTH_SHORT).show();
+                                            txtFechaReto.setText("");
+                                            txtHoraReto.setText("");
+                                            txtMensajeReto.setText("");
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "Error al crear equipo", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                             }
-                        });
+                        };
+                        tr.start();
                     }
-                };
-                tr.start();
-
+                }
                 break;
 
             case R.id.btnBackSpace:
