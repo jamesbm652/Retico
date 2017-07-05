@@ -80,5 +80,6 @@ public class Reto {
         return new RetoModel().insertarReto(this);
     }
 
+    public boolean cambiarEstadoReto(int idEstado){ return new RetoModel().cambiarEstadoReto(this.Id, idEstado);}
 
 }

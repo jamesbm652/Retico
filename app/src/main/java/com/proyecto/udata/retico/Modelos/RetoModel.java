@@ -221,4 +221,28 @@ public class RetoModel {
         }
     }
 
+    public boolean cambiarEstadoReto(int idReto,int idEstado){
+        boolean cambio = false;
+        String res = "false";
+
+        boolean cnxExitosa = conexionConServidor("https://ws-android-gestion-multim.c9users.io/cambiarEstadoReto.php?idReto=" + idReto +
+                " &idEstado=" + idEstado);
+
+        if (cnxExitosa) {
+            String jsonString = obtenerJsonEnString();
+            try {
+                JSONObject jsonObject = new JSONObject(jsonString);
+                res = jsonObject.getString("respuesta");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cnxExitosa && res.equals("true")) {
+            cambio = true;
+        }
+        return cambio;
+    }
+
+
 }

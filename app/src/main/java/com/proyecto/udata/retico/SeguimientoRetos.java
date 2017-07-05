@@ -1,14 +1,17 @@
 package com.proyecto.udata.retico;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -34,7 +37,7 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
     ArrayList<Reto> listaRetos = new ArrayList<>();
     ArrayList<Equipo> listaMisEquipos = new ArrayList<>();
     ArrayList<String> listaStringRetos = new ArrayList<>();
-
+    int tipoReto = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,12 +122,91 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
 
             listViewRetos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(getApplicationContext(),position,Toast.LENGTH_SHORT).show();
-                    //onItemSelectedListener.itemSelected(position);
+                public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    View view2 = (LayoutInflater.from(view.getContext()).inflate(R.layout.info_retos_popup, null));
+
+                    TextView txtEquipoRetador = (TextView)view2.findViewById(R.id.txtEquipoRetador);
+                    TextView txtEquipoRetado = (TextView)view2.findViewById(R.id.txtEquipoRetado);
+                    TextView txtFechaInfoReto = (TextView)view2.findViewById(R.id.txtFechaInfoReto);
+                    TextView txtHoraInfoReto = (TextView)view2.findViewById(R.id.txtHoraInfoReto);
+                    TextView txtMensajeInfoReto = (TextView)view2.findViewById(R.id.txtMensajeInfoReto);
+                    Button btnAceptarReto = (Button)view2.findViewById(R.id.btnAceptarReto);
+                    Button btnRechazarReto = (Button)view2.findViewById(R.id.btnRechazarReto);
+                    Button btnCancelarReto = (Button)view2.findViewById(R.id.btnCancelarReto);
+
+                    txtEquipoRetador.setText(listaRetos.get(position).getEquipoRetador().getNombre());
+                    txtEquipoRetado.setText(listaRetos.get(position).getEquipoRetado().getNombre());
+                    txtFechaInfoReto.setText(listaRetos.get(position).getFechaReto().toString());
+                    txtHoraInfoReto.setText(listaRetos.get(position).getHora());
+                    txtMensajeInfoReto.setText(listaRetos.get(position).getDescripcion());
+
+                    if(getIntent().getExtras().getString("tipoReto").equals("Pendiente")) {
+                        btnAceptarReto.setVisibility(View.VISIBLE);
+                        btnRechazarReto.setVisibility(View.VISIBLE);
+                        btnCancelarReto.setVisibility(View.INVISIBLE);
+
+                        btnAceptarReto.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                cambiarEstadoReto(listaRetos.get(position).getId(),3);
+                                listaRetos.remove(listaRetos.get(position));
+                                listaStringRetos.remove(listaRetos.get(position));
+
+                                //aqui va ir lo de refrescar la lista
+                            }
+                        });
+
+                        btnRechazarReto.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                cambiarEstadoReto(listaRetos.get(position).getId(),2);
+                            }
+                        });
+                    }else if(getIntent().getExtras().getString("tipoReto").equals("Aceptados")){
+                        btnAceptarReto.setVisibility(View.INVISIBLE);
+                        btnRechazarReto.setVisibility(View.INVISIBLE);
+                        btnCancelarReto.setVisibility(View.VISIBLE);
+
+                        btnCancelarReto.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                cambiarEstadoReto(listaRetos.get(position).getId(),4);
+                            }
+                        });
+
+                    }else{
+                        btnAceptarReto.setVisibility(View.INVISIBLE);
+                        btnRechazarReto.setVisibility(View.INVISIBLE);
+                        btnCancelarReto.setVisibility(View.INVISIBLE);
+                    }
+                    builder.setView(view2);
+                    builder.show();
+
                 }
             });
         }
+    }
+
+    private void cambiarEstadoReto(final int id, final int idEstado){
+        boolean retorno;
+        Thread tr = new Thread(){
+            @Override
+            public void run() {
+                Reto reto = new Reto();
+                reto.setId(id);
+                reto.cambiarEstadoReto(idEstado);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(idEstado == 3) Toast.makeText(getApplicationContext(),"Has aceptado el reto",Toast.LENGTH_SHORT).show();
+                        if(idEstado == 2) Toast.makeText(getApplicationContext(),"Has rechazado el reto",Toast.LENGTH_SHORT).show();
+                        if(idEstado == 4) Toast.makeText(getApplicationContext(),"Has cancelado el reto",Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        };
+        tr.start();
     }
 
 
