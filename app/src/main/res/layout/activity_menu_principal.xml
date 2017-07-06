@@ -59,35 +59,16 @@
         android:layout_height="match_parent"
         android:id="@+id/navigationMenu"
         android:layout_gravity="start"
+        app:menu="@menu/navigation_menu"
+        app:headerLayout="@layout/navigation_header"
         >
-
+<!--
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginBottom="100dp">
 
-            <android.support.v7.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:layout_marginBottom="30dp"
-                android:background="@color/colorPrimaryDark"
-                android:elevation="8dp"
-
-                >
-
-                <ImageView
-                    android:id="@+id/logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/logoretico"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    />
-
-
-            </android.support.v7.widget.Toolbar>
 
 
 
@@ -153,8 +134,7 @@
             </LinearLayout>
 
 
-
-        </LinearLayout>
+        </LinearLayout>-->
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

@@ -306,9 +306,6 @@ public class SeguimientoRetos extends AppCompatActivity implements View.OnClickL
             case R.id.btnBackSpaceListaRetos:
                 startActivity(new Intent(getApplicationContext(),MenuPrincipal.class));
                 break;
-            case R.id.btnFABRetos:
-                startActivity(new Intent(getApplicationContext(),RetarEquipos.class));
-                break;
 
         }
     }
