@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group>
+    <group android:checkableBehavior="single">
     <item android:id="@+id/miPerfil"
         android:icon="@drawable/ic_account_box_black_24dp"
         android:title="Mi perfil"/>
@@ -15,26 +15,27 @@
         android:title="Crear mi equipo"/>
     </group>
 
+<item android:title="Retos">
+    <menu>
+        <item android:id="@+id/retosPendientes"
+            android:icon="@drawable/ic_report_black_24dp"
+            android:title="Pendientes"/>
 
-    <group>
-    <item android:id="@+id/retosPendientes"
-        android:icon="@drawable/ic_list_black_24dp"
-        android:title="Retos pendientes"/>
+        <item android:id="@+id/retosEnviados"
+            android:icon="@drawable/ic_send_black_24dp"
+            android:title="Enviados"/>
 
-    <item android:id="@+id/retosEnviados"
-        android:icon="@drawable/ic_send_black_24dp"
-        android:title="Retos enviados"/>
+        <item android:id="@+id/retosAceptados"
+            android:icon="@drawable/ic_playlist_add_check_black_24dp"
+            android:title="Aceptados"/>
 
-    <item android:id="@+id/retosAceptados"
-        android:icon="@drawable/ic_playlist_add_check_black_24dp"
-        android:title="Retos aceptados"/>
+        <item android:id="@+id/retosRechazados"
+            android:icon="@drawable/ic_clear_black_24dp"
+            android:title="Rechazados"/>
 
-    <item android:id="@+id/retosRechazados"
-        android:icon="@drawable/ic_clear_black_24dp"
-        android:title="Retos rechazados"/>
-
-    <item android:id="@+id/retosCancelados"
-        android:icon="@drawable/ic_block_black_24dp"
-        android:title="Retos cancelados"/>
-    </group>
+        <item android:id="@+id/retosCancelados"
+            android:icon="@drawable/ic_block_black_24dp"
+            android:title="Cancelados"/>
+    </menu>
+</item>
 </menu>
