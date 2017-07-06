@@ -27,7 +27,7 @@
             android:layout_gravity="left"
             android:clickable="true"
             />
-
+<!--
         <ImageButton
             android:id="@+id/btnSearch"
             android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
             android:layout_gravity="right"
             android:clickable="true"
             />
-
+-->
 
     </android.support.v7.widget.Toolbar>
 
